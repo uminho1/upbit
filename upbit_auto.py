@@ -39,29 +39,29 @@ while True:
     now = datetime.datetime.now()
     krw_balance = round(upbit.get_balance("KRW"), 0)                                  # 잔고확인    
     krw_call_price = round(upbit.get_avg_buy_price("KRW-ETH"), 0)                     # 매수금액    
-    price = round(pyupbit.get_current_price("KRW-ETH"), 0)                            # 현재가격
+    price = round(pyupbit.get_current_price("KRW-ETH"), 0)                            # 현재가격    
     price_gap = price - target_20                                                     # 현재가격과 목표가의 차이
     
     #====================================================================================================
     target_20 = price_ma()                                                            # MA20 
-    target_20_call = target_20 - (target_20 * 0.008)                                  # 매수 목표가
+    target_20_call = target_20 - (target_20 * 0.008)                                  # 매수 목표가 (MA20보다 0.008 하락시 매수)
     target_20_call_gap = target_20 * 0.008                                            # 매수 목표가 Gap
     #====================================================================================================
     #====================================================================================================
     target_20 = price_ma()                                                            # MA20 
-    target_20_down = target_20 - (target_20 * 0.005)                                  # 매도 MA20 목표가
-    target_20_down_gap = target_20 * 0.005                                            # 매도 MA20 목표가 Gap    
+    target_20_down = target_20 - (target_20 * 0.007)                                  # 매도 MA20 목표가
+    target_20_down_gap = target_20 * 0.007                                            # 매도 MA20 목표가 Gap    
     #====================================================================================================    
     #====================================================================================================    
     target_20_up = krw_call_price + (krw_call_price * 0.015)                          # 익절 목표가
     target_20_up_gap = krw_call_price * 0.05                                          # 익절 목표가 Gap     
     #====================================================================================================
         
-    # [매수] 조건 시도 (현재가격이 3분봉 MA20보다 낮으면 매수)
-    if price is not None and price < target_20_call:
+    # [매수] 조건 시도 (현재가격이 10분봉 MA20보다 낮고, 매수목표가보다 낮으면 매수)
+    if price is not None and price < target_20 and price < target_20_call:
         krw_balance = upbit.get_balance("KRW")                                        # 잔고확인 
         upbit.buy_market_order("KRW-ETH", krw_balance)                                # 원화잔고 전체로 시장가로 매수 krw_balance * 0.5 <-- 50%만 매수
-        call_now = datetime.datetime.now()
+        call_now = datetime.datetime.now()                                            # 매수시간  
     
     # [손절] 현재가격이 10분봉 MA20선 아래에 있고, 그리고 MA20선보다 0.005% 하락한 가격이면 손절
     if price < target_20 and price <= target_20_down:   
@@ -79,7 +79,20 @@ while True:
         sell_price1 = pyupbit.get_current_price("KRW-ETH")                                # 매도한 가격
         sell_now = datetime.datetime.now()                                                # 매도한 시간            
 
+    print(f"---------------------------------------------------------")
+    print(now.strftime('▶ 시간: %y/%m/%d %H:%M:%S'))
+    print("▶ MA20: {0:,.0f}".format(target_20))
+    print("▶ price (현재가): {0:,.0f}".format(price))
+    print("▶ price MA Gap (MA차이): {0:,.0f}".format(price_gap))
+    print("▶ - sell(손절가격): {0:,.0f}".format(target_20_down))
+    print("▶ - sell Gap (손절가격Gap): {0:,.0f}".format(target_20_down_gap))
+    print("▶ + sell (익절가격1.5%): {0:,.0f}".format(target_20_up))
+    print("▶ sell Gap (익절가격Gap): {0:,.0f}".format(target_20_up_gap))
+    print("▶ call Target (매수목표가): {0:,.0f}".format(target_20_call))
+    print("▶ call Gap (매수목표가Gap): {0:,.0f}".format(target_20_call_gap))
+    print("▶ call Price (매수한금액): {0:,.0f}".format(krw_call_price))
+    print("▶ Upbit KRW (잔고현황): {0:,.0f}".format(krw_balance))
+    print(f"---------------------------------------------------------")
+    print(f"---------------------------------------------------------")
     
-    print(f"MA20:{target_20} / 현재가:{price} / MA차이:{price_gap} / 손절가격: {target_20_down} (-{target_20_down_gap}) / 익절가격(1.5%): {target_20_up} (+{target_20_up_gap}) / 매수목표가: {target_20_call} (-{target_20_call_gap}) / 매수한금액:{krw_call_price} / 잔고:{krw_balance} {hold} {op_mode}")    
-    
-    time.sleep(1)
+    time.sleep(30)
