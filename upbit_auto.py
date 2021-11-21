@@ -23,8 +23,8 @@ def price_ma():
 
 
 # 객체 생성
-access = nehpcdrsANEdzmeHeWY5MVEElxY4Exl4Y5HymcsH
-secret = pH5hvBYyC2wvchkGTyz8gYYGsBvSgv0ZGFMPh66Z
+access = "nehpcdrsANEdzmeHeWY5MVEElxY4Exl4Y5HymcsH"
+secret = "pH5hvBYyC2wvchkGTyz8gYYGsBvSgv0ZGFMPh66Z"
 upbit =  pyupbit.Upbit(access, secret)
 
 #변수 생성
