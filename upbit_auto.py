@@ -127,4 +127,4 @@ while True:
     print("▶ Upbit KRW : {0:,.0f}".format(krw_balance))
     print(f"---------------------------------------------------------")    
     
-    time.sleep(30)  
+    time.sleep(10)  
