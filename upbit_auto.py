@@ -44,8 +44,8 @@ while True:
     
     # 1st_price_value
     target_10 = target_10
-    target_10_call = target_10 - (target_10 * 0.008)
-    target_10_call_gap = target_10 * 0.004
+    target_10_call = target_10 - (target_10 * 0.007)
+    target_10_call_gap = target_10 * 0.007
     #====================================================================================================    
     # - sell value
     target_10 = target_10
@@ -53,8 +53,8 @@ while True:
     target_10_down_gap = target_10 * 0.007
     #====================================================================================================    
     # + 1.5% sell value
-    target_10_up = krw_call_price + (krw_call_price * 0.015)
-    target_10_up_gap = krw_call_price * 0.05
+    target_10_up = krw_call_price + (krw_call_price * 0.02)
+    target_10_up_gap = krw_call_price * 0.02
     #====================================================================================================
         
     # 1st_price_value 
@@ -66,7 +66,7 @@ while True:
         count = 2
         # 2nd_price_value    
         target_10_call_2nd = price_1st - (price_1st * 0.003)
-        target_10_call_2nd__gap = price_1st * 0.00    
+        target_10_call_2nd__gap = price_1st * 0.003
 
     # 2nd_price_value 
     if price is not None and count == 2 and price < target_10 and price < target_10_call_2nd:
@@ -77,7 +77,7 @@ while True:
         count = 3
         # 3rd_price_value    
         target_10_call_3rd = price_2nd - (price_2nd * 0.003)
-        target_10_call_3rd__gap = price_1st * 0.00
+        target_10_call_3rd__gap = price_1st * 0.003
 
     # 3rd_price_value 
     if price is not None and count == 3 and price < target_10 and price < target_10_call_3rd:
