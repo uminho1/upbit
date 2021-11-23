@@ -8,13 +8,13 @@ import webbrowser
 import numpy as np
 
 def price_ma():
-    url = "https://api.upbit.com/v1/candles/minutes/5"    
+    url = "https://api.upbit.com/v1/candles/minutes/5"
     querystring = {"market":"KRW-ETH","count":"100"}    
     response = requests.request("GET", url, params=querystring)    
     data = response.json()    
     df = pd.DataFrame(data)    
-    df=df['trade_price'].iloc[::-1]
-    ma20 = df.rolling(window=20).mean()
+    df=df['trade_price'].iloc[::-1]    
+    ma20 = df.rolling(window=20).mean()    
     ma20_ = round(ma20.iloc[-1], 2)    
     return ma20_
 
@@ -111,6 +111,7 @@ while True:
 
     print(f"---------------------------------------------------------")
     print(now.strftime('▶ Time: %y/%m/%d %H:%M:%S'))
+    print("▶ count: {0:,.0f}".format(count)) 
     print("▶ MA20: {0:,.0f}".format(target_10))
     print("▶ price : {0:,.0f}".format(price))
     print("▶ price MA Gap : {0:,.0f}".format(price_gap))
@@ -124,4 +125,4 @@ while True:
     print("▶ Upbit KRW : {0:,.0f}".format(krw_balance))
     print(f"---------------------------------------------------------")    
     
-    time.sleep(10)  
+    time.sleep(10)
