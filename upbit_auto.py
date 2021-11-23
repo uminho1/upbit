@@ -8,18 +8,15 @@ import webbrowser
 import numpy as np
 
 def price_ma():
-    url = "https://api.upbit.com/v1/candles/minutes/10"    
+    url = "https://api.upbit.com/v1/candles/minutes/5"    
     querystring = {"market":"KRW-ETH","count":"100"}    
     response = requests.request("GET", url, params=querystring)    
     data = response.json()    
     df = pd.DataFrame(data)    
     df=df['trade_price'].iloc[::-1]
-    ma5 = df.rolling(window=5).mean()
     ma20 = df.rolling(window=20).mean()
-
-    ma5_ = round(ma5.iloc[-1], 2)
     ma20_ = round(ma20.iloc[-1], 2)    
-    return ma5_
+    return ma20_
 
 # -----------------------------------------------------------------
 access = "nehpcdrsANEdzmeHeWY5MVEElxY4Exl4Y5HymcsH"
