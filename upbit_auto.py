@@ -14,12 +14,12 @@ def price_ma():
     data = response.json()    
     df = pd.DataFrame(data)    
     df=df['trade_price'].iloc[::-1]
-    ma15 = df.rolling(window=15).mean()
+    ma5 = df.rolling(window=5).mean()
     ma20 = df.rolling(window=20).mean()
 
-    ma15_ = round(ma15.iloc[-1], 2)
+    ma5_ = round(ma5.iloc[-1], 2)
     ma20_ = round(ma20.iloc[-1], 2)    
-    return ma20_
+    return ma5_
 
 # -----------------------------------------------------------------
 access = "nehpcdrsANEdzmeHeWY5MVEElxY4Exl4Y5HymcsH"
