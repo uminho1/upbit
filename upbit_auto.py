@@ -62,8 +62,8 @@ while True:
         price_1st = price
         count = 2
         # 2nd_price_value    
-        target_10_call_2nd = price_1st - (price_1st * 0.003)
-        target_10_call_2nd__gap = price_1st * 0.003
+        target_10_call_2nd = price_1st - (price_1st * 0.005)
+        target_10_call_2nd__gap = price_1st * 0.005
 
     # 2nd_price_value 
     if price is not None and count == 2 and price < target_10 and price < target_10_call_2nd:
@@ -73,8 +73,8 @@ while True:
         price_2nd = price
         count = 3
         # 3rd_price_value    
-        target_10_call_3rd = price_2nd - (price_2nd * 0.003)
-        target_10_call_3rd__gap = price_1st * 0.003
+        target_10_call_3rd = price_2nd - (price_2nd * 0.005)
+        target_10_call_3rd__gap = price_1st * 0.005
 
     # 3rd_price_value 
     if price is not None and count == 3 and price < target_10 and price < target_10_call_3rd:
@@ -99,10 +99,10 @@ while True:
         sell_price1 = pyupbit.get_current_price("KRW-ETH")
         sell_now = datetime.datetime.now()
         count = 4
-        target_10_call_4th = sell_price1 - (price * 0.01)
+        target_10_call_4th = sell_price1 - (price * 0.006)
 
     # + 1.5% sell value
-    if price > target_10 and price >= target_10_up:   
+    if krw_call_price > 1 and price > target_10 and price >= target_10_up:   
         btc_balance = upbit.get_balance("KRW-ETH")
         upbit.sell_market_order("KRW-ETH", btc_balance)
         krw_balance = upbit.get_balance("KRW")
@@ -115,11 +115,11 @@ while True:
     print("▶ MA20: {0:,.0f}".format(target_10))
     print("▶ price : {0:,.0f}".format(price))
     print("▶ price MA Gap : {0:,.0f}".format(price_gap))
-    print("▶ - sell : {0:,.0f}".format(target_10_down))
-    print("▶ - sell : {0:,.0f}".format(target_10_down_gap))
-    print("▶ + sell : {0:,.0f}".format(target_10_up))
+    print("▶ - sell(2.4%) : {0:,.0f}".format(target_10_down))
+    print("▶ - sell Gap : {0:,.0f}".format(target_10_down_gap))
+    print("▶ + sell(1.5%) : {0:,.0f}".format(target_10_up))
     print("▶ sell Gap : {0:,.0f}".format(target_10_up_gap))
-    print("▶ call Target : {0:,.0f}".format(target_10_call))
+    print("▶ call Target(1.1%) : {0:,.0f}".format(target_10_call))
     print("▶ call Gap : {0:,.0f}".format(target_10_call_gap))    
     print("▶ call Price : {0:,.0f}".format(krw_call_price))
     print("▶ Upbit KRW : {0:,.0f}".format(krw_balance))
