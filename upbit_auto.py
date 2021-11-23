@@ -46,8 +46,8 @@ while True:
     #====================================================================================================    
     # - sell value
     target_10 = target_10
-    target_10_down = target_10 - (target_10 * 0.01)
-    target_10_down_gap = target_10 * 0.01
+    target_10_down = target_10 - (target_10 * 0.026)
+    target_10_down_gap = target_10 * 0.026
     #====================================================================================================    
     # + 1.5% sell value
     target_10_up = krw_call_price + (krw_call_price * 0.015)
@@ -99,7 +99,7 @@ while True:
         sell_price1 = pyupbit.get_current_price("KRW-ETH")
         sell_now = datetime.datetime.now()
         count = 4
-        target_10_call_4th = sell_price1 - (price * 0.015)
+        target_10_call_4th = sell_price1 - (price * 0.01)
 
     # + 1.5% sell value
     if price > target_10 and price >= target_10_up:   
