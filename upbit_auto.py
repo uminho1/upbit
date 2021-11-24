@@ -119,7 +119,7 @@ while True:
     print("▶ - sell(2.4%) : {0:,.0f}".format(target_10_down))
     print("▶ - sell Gap : {0:,.0f}".format(target_10_down_gap))
     print("▶ + sell(1.5%) : {0:,.0f}".format(target_10_up))
-    print("▶ sell Gap : {0:,.0f}".format(target_10_up_gap))
+    print("▶ + sell Gap : {0:,.0f}".format(target_10_up_gap))
     print("▶ call Target(1.1%) : {0:,.0f}".format(target_10_call))
     print("▶ call Gap : {0:,.0f}".format(target_10_call_gap))    
     print("▶ call Price : {0:,.0f}".format(krw_call_price))
