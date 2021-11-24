@@ -84,12 +84,12 @@ while True:
         price_3rd = price
       
     # 4th_price_value 
-    if price is not None and count == 4 and price < target_10 and price < target_10_call_4th:
-        krw_balance = upbit.get_balance("KRW")
-        upbit.buy_market_order("KRW-ETH", krw_balance)
-        call_now = datetime.datetime.now()
-        price_4th = price
-        count = 1
+    #if price is not None and count == 4 and price < target_10 and price < target_10_call_4th:
+    #    krw_balance = upbit.get_balance("KRW")
+    #    upbit.buy_market_order("KRW-ETH", krw_balance)
+    #    call_now = datetime.datetime.now()
+    #    price_4th = price
+    #    count = 1
     
     # - sell value
     #if price < target_10 and price < target_10_down:   
@@ -108,6 +108,7 @@ while True:
         krw_balance = upbit.get_balance("KRW")
         sell_price1 = pyupbit.get_current_price("KRW-ETH")
         sell_now = datetime.datetime.now()
+        count = 1
 
     print(f"---------------------------------------------------------")
     print(now.strftime('▶ Time: %y/%m/%d %H:%M:%S'))
