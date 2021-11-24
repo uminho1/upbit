@@ -46,8 +46,8 @@ while True:
     #====================================================================================================    
     # - sell value
     target_10 = target_10
-    target_10_down = target_10 - (target_10 * 0.024)
-    target_10_down_gap = target_10 * 0.024
+    target_10_down = krw_call_price - (krw_call_price * 0.02)
+    target_10_down_gap = krw_call_price * 0.02
     #====================================================================================================    
     # + 1.5% sell value
     target_10_up = krw_call_price + (krw_call_price * 0.015)
