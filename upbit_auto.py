@@ -92,14 +92,14 @@ while True:
         count = 1
     
     # - sell value
-    if price < target_10 and price <= target_10_down:   
-        btc_balance = upbit.get_balance("KRW-ETH")
-        upbit.sell_market_order("KRW-ETH", btc_balance)
-        krw_balance = upbit.get_balance("KRW")
-        sell_price1 = pyupbit.get_current_price("KRW-ETH")
-        sell_now = datetime.datetime.now()
-        count = 4
-        target_10_call_4th = sell_price1 - (price * 0.006)
+    #if price < target_10 and price < target_10_down:   
+    #    btc_balance = upbit.get_balance("KRW-ETH")
+    #    upbit.sell_market_order("KRW-ETH", btc_balance)
+    #    krw_balance = upbit.get_balance("KRW")
+    #    sell_price1 = pyupbit.get_current_price("KRW-ETH")
+    #    sell_now = datetime.datetime.now()
+    #    count = 4
+    #    target_10_call_4th = sell_price1 - (price * 0.006)
 
     # + 1.5% sell value
     if krw_call_price > 1 and price > target_10 and price >= target_10_up:   
