@@ -102,7 +102,7 @@ while True:
     #    target_10_call_4th = sell_price1 - (price * 0.006)
 
     # + 1.5% sell value
-    if krw_call_price > 1 and price > target_10 and price >= target_10_up:   
+    if krw_call_price > 1 and price > target_10 and price > target_10_up:   
         btc_balance = upbit.get_balance("KRW-ETH")
         upbit.sell_market_order("KRW-ETH", btc_balance)
         krw_balance = upbit.get_balance("KRW")
