@@ -38,13 +38,14 @@ while True:
     krw_call_price = round(upbit.get_avg_buy_price("KRW-ETH"), 0)
     price = round(pyupbit.get_current_price("KRW-ETH"), 0)
     price_gap = price - target_10
-    
+    callcall = price / krw_call_price
+
     # 1st_price_value
     target_10 = target_10
     target_10_call = target_10 - (target_10 * 0.011)
     target_10_call_gap = price - target_10_call
     #====================================================================================================    
-    # - 2.5% sell value 
+    # - sell value
     target_10 = target_10
     target_10_down = krw_call_price - (krw_call_price * 0.025)
     target_10_down_gap = krw_call_price * 0.025
@@ -122,7 +123,8 @@ while True:
     print("▶ + sell Gap : {0:,.0f}".format(target_10_up_gap))
     print("▶ call Target(1.1%) : {0:,.0f}".format(target_10_call))
     print("▶ call Gap : {0:,.0f}".format(target_10_call_gap))    
-    print("▶ call Price : {0:,.0f}".format(krw_call_price))
+    print("▶ Price Avg : {0:,.0f}".format(krw_call_price))
+    print("▶ Price +-: {0:,.2f}".format(callcall))
     print("▶ Upbit KRW : {0:,.0f}".format(krw_balance))
     print(f"---------------------------------------------------------")    
     
