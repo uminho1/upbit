@@ -30,8 +30,7 @@ coinrobot = 1
 
 while True:
     now = datetime.datetime.now()
-    target_10 = price_ma() 
-    #target_10 = round(pyupbit.get_ohlcv("KRW-ETH", "minute10"), 0)
+    target_10 = price_ma()
     krw_balance = round(upbit.get_balance("KRW"), 0)
     krw_call_price = round(upbit.get_avg_buy_price(coin), 0)
     price = round(pyupbit.get_current_price(coin), 0)
