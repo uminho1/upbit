@@ -7,9 +7,15 @@ import pandas as pd
 import webbrowser
 import numpy as np
 
+# -----------------------------------------------------------------
+coin = "KRW-ETH"
+count = 1
+coinrobot = 1
+# -----------------------------------------------------------------
+
 def price_ma():
     url = "https://api.upbit.com/v1/candles/minutes/5"
-    querystring = {"market":"KRW-ETH","count":"100"}    
+    querystring = {"market":coin,"count":"200"}
     response = requests.request("GET", url, params=querystring)    
     data = response.json()    
     df = pd.DataFrame(data)    
@@ -22,11 +28,6 @@ def price_ma():
 access = "nehpcdrsANEdzmeHeWY5MVEElxY4Exl4Y5HymcsH"
 secret = "pH5hvBYyC2wvchkGTyz8gYYGsBvSgv0ZGFMPh66Z"
 upbit =  pyupbit.Upbit(access, secret)
-# -----------------------------------------------------------------
-coin = "KRW-ETH"
-count = 1
-coinrobot = 1
-# -----------------------------------------------------------------
 
 while True:
     now = datetime.datetime.now()
