@@ -43,10 +43,10 @@ while True:
     #====================================================================================================    
     # - sell value
     target_10 = target_10
-    target_10_down = krw_call_price - (krw_call_price * 0.025)
-    target_10_down_gap = krw_call_price * 0.025
+    target_10_down = krw_call_price - (krw_call_price * 0.03)
+    target_10_down_gap = krw_call_price * 0.03
     #====================================================================================================
-    # + 1.5% sell value
+    # + 1.2% sell value
     target_10_up = krw_call_price + (krw_call_price * 0.012)
     target_10_up_gap = krw_call_price * 0.012
     #====================================================================================================
@@ -59,8 +59,8 @@ while True:
         price_1st = price
         count = 2
         # 2nd_price_value    
-        target_10_call_2nd = price_1st - (price_1st * 0.003)
-        target_10_call_2nd__gap = price_1st * 0.003
+        target_10_call_2nd = price_1st - (price_1st * 0.002)
+        target_10_call_2nd__gap = price_1st * 0.002
 
     # 2nd_price_value 
     if coinrobot = 1 and price is not None and count == 2 and price < target_10 and price < target_10_call_2nd:
@@ -113,7 +113,7 @@ while True:
     print("▶ MA20: {0:,.0f}".format(target_10))
     print("▶ price : {0:,.0f}".format(price))
     print("▶ price MA Gap : {0:,.0f}".format(price_gap))
-    print("▶ - sell(2.5%) : {0:,.0f}".format(target_10_down))
+    print("▶ - sell(3.0%) : {0:,.0f}".format(target_10_down))
     print("▶ - sell Gap : {0:,.0f}".format(target_10_down_gap))
     print("▶ + sell(1.2%) : {0:,.0f}".format(target_10_up))
     print("▶ + sell Gap : {0:,.0f}".format(target_10_up_gap))
