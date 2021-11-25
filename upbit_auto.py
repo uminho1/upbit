@@ -23,11 +23,9 @@ access = "nehpcdrsANEdzmeHeWY5MVEElxY4Exl4Y5HymcsH"
 secret = "pH5hvBYyC2wvchkGTyz8gYYGsBvSgv0ZGFMPh66Z"
 upbit =  pyupbit.Upbit(access, secret)
 # -----------------------------------------------------------------
-op_mode = True
-hold = False
+coin = "KRW-ETH"
 count = 1
-sell_price1 = pyupbit.get_current_price("KRW-ETH") * 0.0015
-sell_price2 = pyupbit.get_current_price("KRW-ETH") + sell_price1
+coinrobot = 1
 # -----------------------------------------------------------------
 
 while True:
@@ -35,11 +33,10 @@ while True:
     target_10 = price_ma() 
     #target_10 = round(pyupbit.get_ohlcv("KRW-ETH", "minute10"), 0)
     krw_balance = round(upbit.get_balance("KRW"), 0)
-    krw_call_price = round(upbit.get_avg_buy_price("KRW-ETH"), 0)
-    price = round(pyupbit.get_current_price("KRW-ETH"), 0)
+    krw_call_price = round(upbit.get_avg_buy_price(coin), 0)
+    price = round(pyupbit.get_current_price(coin), 0)
     price_gap = price - target_10
-    callcall = price / krw_call_price
-
+    
     # 1st_price_value
     target_10 = target_10
     target_10_call = target_10 - (target_10 * 0.005)
@@ -49,16 +46,16 @@ while True:
     target_10 = target_10
     target_10_down = krw_call_price - (krw_call_price * 0.025)
     target_10_down_gap = krw_call_price * 0.025
-    #====================================================================================================    
+    #====================================================================================================
     # + 1.5% sell value
     target_10_up = krw_call_price + (krw_call_price * 0.012)
     target_10_up_gap = krw_call_price * 0.012
     #====================================================================================================
         
     # 1st_price_value 
-    if price is not None and count == 1 and price < target_10 and price < target_10_call:
+    if coinrobot = 1 and price is not None and count == 1 and price < target_10 and price < target_10_call:
         krw_balance = upbit.get_balance("KRW")
-        upbit.buy_market_order("KRW-ETH", krw_balance * 0.3)
+        upbit.buy_market_order(coin, krw_balance * 0.3)
         call_now = datetime.datetime.now()
         price_1st = price
         count = 2
@@ -67,9 +64,9 @@ while True:
         target_10_call_2nd__gap = price_1st * 0.003
 
     # 2nd_price_value 
-    if price is not None and count == 2 and price < target_10 and price < target_10_call_2nd:
+    if coinrobot = 1 and price is not None and count == 2 and price < target_10 and price < target_10_call_2nd:
         krw_balance = upbit.get_balance("KRW")
-        upbit.buy_market_order("KRW-ETH", krw_balance * 0.3)
+        upbit.buy_market_order(coin, krw_balance * 0.3)
         call_now = datetime.datetime.now()
         price_2nd = price
         count = 3
@@ -78,36 +75,36 @@ while True:
         target_10_call_3rd__gap = price_1st * 0.002
 
     # 3rd_price_value 
-    if price is not None and count == 3 and price < target_10 and price < target_10_call_3rd:
+    if coinrobot = 1 and price is not None and count == 3 and price < target_10 and price < target_10_call_3rd:
         krw_balance = upbit.get_balance("KRW")
-        upbit.buy_market_order("KRW-ETH", krw_balance)
+        upbit.buy_market_order(coin, krw_balance)
         call_now = datetime.datetime.now()
         price_3rd = price
       
     # 4th_price_value 
-    if price is not None and count == 4 and price < target_10 and price < target_10_call_4th:
+    if coinrobot = 1 and price is not None and count == 4 and price < target_10 and price < target_10_call_4th:
         krw_balance = upbit.get_balance("KRW")
-        upbit.buy_market_order("KRW-ETH", krw_balance)
+        upbit.buy_market_order(coin, krw_balance)
         call_now = datetime.datetime.now()
         price_4th = price
         count = 1
     
     # - sell value
-    if price < target_10 and price < target_10_down:   
-        btc_balance = upbit.get_balance("KRW-ETH")
-        upbit.sell_market_order("KRW-ETH", btc_balance)
+    if coinrobot = 1 and price < target_10 and price < target_10_down:   
+        btc_balance = upbit.get_balance(coin)
+        upbit.sell_market_order(coin, btc_balance)
         krw_balance = upbit.get_balance("KRW")
-        sell_price1 = pyupbit.get_current_price("KRW-ETH")
+        sell_price1 = pyupbit.get_current_price(coin)
         sell_now = datetime.datetime.now()
         count = 4
         target_10_call_4th = sell_price1 - (price * 0.005)
 
     # + 1.5% sell value
-    if krw_call_price > 1 and price > target_10 and price > target_10_up:   
-        btc_balance = upbit.get_balance("KRW-ETH")
-        upbit.sell_market_order("KRW-ETH", btc_balance)
+    if coinrobot = 1 and krw_call_price > 1 and price > target_10 and price > target_10_up:   
+        btc_balance = upbit.get_balance(coin)
+        upbit.sell_market_order(coin, btc_balance)
         krw_balance = upbit.get_balance("KRW")
-        sell_price1 = pyupbit.get_current_price("KRW-ETH")
+        sell_price1 = pyupbit.get_current_price(coin)
         sell_now = datetime.datetime.now()
         count = 1
 
@@ -121,11 +118,9 @@ while True:
     print("▶ - sell Gap : {0:,.0f}".format(target_10_down_gap))
     print("▶ + sell(1.2%) : {0:,.0f}".format(target_10_up))
     print("▶ + sell Gap : {0:,.0f}".format(target_10_up_gap))
-    print("▶ call Target(0.5%) : {0:,.0f}".format(target_10_call))
-    print("▶ call Gap : {0:,.0f}".format(target_10_call_gap))    
-    print("▶ Price Avg : {0:,.0f}".format(krw_call_price))
-    print("▶ Price +-: {0:,.2f}".format(callcall))
-    print("▶ Upbit KRW : {0:,.0f}".format(krw_balance))
-    print(f"---------------------------------------------------------")    
+    print("▶ call Target 1st (0.05%) : {0:,.0f}".format(target_10_call))
+    print("▶ call Gap : {0:,.0f}".format(target_10_call_gap))
+    print("▶ Price Avg : {0:,.0f}".format(krw_call_price))    
+    print("▶ Upbit KRW : {0:,.0f}".format(krw_balance))   
     
     time.sleep(10)
