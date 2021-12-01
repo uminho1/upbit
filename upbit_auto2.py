@@ -56,6 +56,7 @@ while True:
         krw_balance = upbit.get_balance("KRW")
         upbit.buy_market_order(coin, krw_balance * 0.1)
         call_now = datetime.datetime.now()
+        price = round(pyupbit.get_current_price(coin), 0)
         price_1st = price
         count = 2
         # 2nd_price_value    
@@ -67,6 +68,7 @@ while True:
         krw_balance = upbit.get_balance("KRW")
         upbit.buy_market_order(coin, krw_balance * 0.2)
         call_now = datetime.datetime.now()
+        price = round(pyupbit.get_current_price(coin), 0)
         price_2nd = price
         count = 3
         # 3rd_price_value    
@@ -78,6 +80,7 @@ while True:
         krw_balance = upbit.get_balance("KRW")
         upbit.buy_market_order(coin, krw_balance * 0.1)
         call_now = datetime.datetime.now()
+        price = round(pyupbit.get_current_price(coin), 0)
         price_3rd = price
       
     # 4th_price_value 
@@ -85,6 +88,7 @@ while True:
         krw_balance = upbit.get_balance("KRW")
         upbit.buy_market_order(coin, krw_balance)
         call_now = datetime.datetime.now()
+        price = round(pyupbit.get_current_price(coin), 0)
         price_4th = price
         count = 1
     
@@ -95,8 +99,9 @@ while True:
         krw_balance = upbit.get_balance("KRW")
         sell_price1 = pyupbit.get_current_price(coin)
         sell_now = datetime.datetime.now()
+        price = round(pyupbit.get_current_price(coin), 0)
         count = 4
-        target_10_call_4th = sell_price1 - (price * 0.02)
+        target_10_call_4th = sell_price1 - (price * 0.03)
 
     # + 1.8% sell value
     if coinrobot == 1 and krw_call_price > 1 and price > target_10 and price > target_10_up:   
