@@ -101,7 +101,7 @@ while True:
         sell_now = datetime.datetime.now()
         price = round(pyupbit.get_current_price(coin), 0)
         count = 4
-        target_10_call_4th = sell_price1 - (price * 0.03)
+        target_10_call_4th = sell_price1 - (price * 0.02)
 
     # + 1.8% sell value
     if coinrobot == 1 and krw_call_price > 1 and price > target_10 and price > target_10_up:   
