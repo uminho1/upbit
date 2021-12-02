@@ -38,7 +38,7 @@ while True:
     
     # 1st_price_value
     target_10 = target_10
-    target_10_call = target_10 - (target_10 * 0.006)
+    target_10_call = target_10 - (target_10 * 0.008)
     target_10_call_gap = price - target_10_call
     #====================================================================================================    
     # - 6.0% sell value
