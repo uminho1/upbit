@@ -34,7 +34,7 @@ while True:
     price_gap = price - target_10    
     
     # 1st_price_value    
-    target_10_call = target_10 - (target_10 * (0.4/100))    
+    target_10_call = target_10 - (target_10 * (0.5/100))    
     target_10_call_gap = price - target_10_call
     #====================================================================================================    
     # - sell value
@@ -57,7 +57,7 @@ while True:
         upbit.buy_market_order(coin, krw_balance * (5.0/100))
         call_price1 = pyupbit.get_current_price(coin)
         count = 2
-        target_10_call_2nd = call_price1 - (call_price1 * (0.3/100))
+        target_10_call_2nd = call_price1 - (call_price1 * (0.2/100))
 
     # 2nd_price_value 
     if coinrobot == 1 and price is not None and count == 2 and price < target_10 and price < target_10_call_2nd:
@@ -66,7 +66,7 @@ while True:
         upbit.buy_market_order(coin, krw_balance * (10.0/100))
         call_price2 = pyupbit.get_current_price(coin)
         count = 3
-        target_10_call_3rd = call_price2 - (call_price2 * (0.3/100))
+        target_10_call_3rd = call_price2 - (call_price2 * (0.2/100))
 
     # 3nd_price_value 
     if coinrobot == 1 and price is not None and count == 3 and price < target_10 and price < target_10_call_3rd:
