@@ -82,11 +82,11 @@ while True:
         sell_now = datetime.datetime.now()
         upbit.sell_market_order(coin, btc_balance * (5.0/100))
         price = pyupbit.get_current_price(coin)
-        count = 3
+        count = 4
         target_10_call_4th = price - (price * (1.5/100))
 
     # 4th_price_value 
-    if coinrobot == 1 and price is not None and count == 3 and price < target_10 and price < target_10_call_4th:
+    if coinrobot == 1 and price is not None and count == 4 and price < target_10 and price < target_10_call_4th:
         krw_balance = upbit.get_balance("KRW")        
         call_now = datetime.datetime.now()
         upbit.buy_market_order(coin, krw_balance * (20.0/100))
