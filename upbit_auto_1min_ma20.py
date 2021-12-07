@@ -41,7 +41,7 @@ while True:
     upbit_target_call_ = ((price / upbit_target) * 100) - 100
 
     upbit_target_call_2nd = upbit_target - (upbit_target * (0.65/100))
-    upbit_target_call_3rd = upbit_target - (upbit_target * (1.0/100))
+    upbit_target_call_3rd = upbit_target - (upbit_target * (0.9/100))
     upbit_target_recall_1th = upbit_target - (upbit_target * (5.5/100))
     #====================================================================================================    
     # - sell value
