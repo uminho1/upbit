@@ -40,8 +40,8 @@ while True:
     upbit_target_call_1st_gap = price - upbit_target_call_1st
     upbit_target_call_ = ((price / upbit_target) * 100) - 100
 
-    upbit_target_call_2nd = upbit_target - (upbit_target * (0.65/100))
-    upbit_target_call_3rd = upbit_target - (upbit_target * (0.9/100))
+    upbit_target_call_2nd = upbit_target - (upbit_target * (0.6/100))
+    upbit_target_call_3rd = upbit_target - (upbit_target * (0.8/100))
     upbit_target_recall_1th = upbit_target - (upbit_target * (5.5/100))
     #====================================================================================================    
     # - sell value
@@ -102,7 +102,7 @@ while True:
         time.sleep(600000) #10min wait    
 
     # recall 1th_price
-    if recall_count == 1 and price is not None and call_count == 4 and price < upbit_target and price < upbit_target_recall_1th:
+    if recall_count == 1 and price is not None and price < upbit_target and price < upbit_target_recall_1th:
         krw_balance = upbit.get_balance("KRW")        
         call_now = datetime.datetime.now()
         upbit.buy_market_order(coin, krw_balance * (5.0/100))
@@ -125,6 +125,7 @@ while True:
         call_count = 1
         sell_count = 0
         recall_count = 0
+        plus_sell_count = 0
 
     print(f"=========================================================")
     print(now.strftime('▶ Time: %y/%m/%d %H:%M:%S'))
@@ -163,4 +164,3 @@ while True:
     print("▶ Upbit KRW : {0:,.0f}".format(krw_balance))
 
     time.sleep(3)
-
