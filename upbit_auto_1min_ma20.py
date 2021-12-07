@@ -128,21 +128,23 @@ while True:
         plus_sell_count = 0
 
     print(f"=========================================================")
-    print(now.strftime('▶ Time: %y/%m/%d %H:%M:%S'))
-    print("▶ call_count: {0:,.0f}".format(call_count)) 
+    print(now.strftime('▶ Time: %y/%m/%d %H:%M:%S'))    
     print("▶ MA20: {0:,.0f}".format(upbit_target))
     print("▶ price : {0:,.0f}".format(price))
     print("▶ price MA Gap : {0:,.0f}".format(price_gap))
 
-    print(f"---------------------------------------------------------")        
+    print(f"---------------------------------------------------------")
+    print("▶ call_count: {0:,.0f}".format(call_count))    
     print("▶ call Target 1st : {0:,.0f}".format(upbit_target_call_1st))
     print("▶ call Gap : {0:,.0f}".format(upbit_target_call_1st_gap))
     print("▶ call Gap % : {0:,.2f}".format(upbit_target_call_))    
     print("▶ call Target 2nd : {0:,.0f}".format(upbit_target_call_2nd))    
     print("▶ call Target 3rd : {0:,.0f}".format(upbit_target_call_3rd))    
     print("▶ call Target 4th : {0:,.0f}".format(upbit_target_recall_1th))
+    print("▶ recall_count: {0:,.0f}".format(recall_count))
 
-    print(f"---------------------------------------------------------")    
+    print(f"---------------------------------------------------------")
+    print("▶ sell_count: {0:,.0f}".format(sell_count)) 
     print("▶ - sell 1st : {0:,.0f}".format(upbit_target_down_1st))
     print("▶ - sell 2nd : {0:,.0f}".format(upbit_target_down_2nd))
     if upbit_target_down_1st == 0:
@@ -152,8 +154,9 @@ while True:
         print("▶ - sell (1st) Gap % : {0:,.2f}".format(upbit_target_down_))
     
     print(f"---------------------------------------------------------")
-    print("▶ + sell 1st : {0:,.0f}".format(upbit_target_up_1st))
-    print("▶ + sell 2nd : {0:,.0f}".format(upbit_target_up_2nd))
+    print("▶ plus_sell_count: {0:,.0f}".format(plus_sell_count)) 
+    print("▶ plus sell 1st : {0:,.0f}".format(upbit_target_up_1st))
+    print("▶ plus sell 2nd : {0:,.0f}".format(upbit_target_up_2nd))
     if upbit_target_up_1st == 0:
         print("▶ + sell (1st) Gap : {0:,.0f}".format(upbit_target_up_1st_gap))
     else:        
