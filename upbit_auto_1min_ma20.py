@@ -6,7 +6,7 @@ import requests
 import pandas as pd
 # -----------------------------------------------------------------
 coin = "KRW-ETH"
-call_count = 0
+call_count = 1
 sell_count = 0
 recall_count = 0
 plus_sell_count = 0
@@ -162,4 +162,4 @@ while True:
     print("▶ Price Avg : {0:,.0f}".format(krw_call_price))
     print("▶ Upbit KRW : {0:,.0f}".format(krw_balance))
 
-    time.sleep(3)  #3sec
+    time.sleep(3)
