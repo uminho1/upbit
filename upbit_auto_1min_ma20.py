@@ -139,7 +139,7 @@ while True:
     print("▶ call Gap % : {0:,.2f}".format(upbit_target_call_))    
     print("▶ call Target 2nd : {0:,.0f}".format(upbit_target_call_2nd))    
     print("▶ call Target 3rd : {0:,.0f}".format(upbit_target_call_3rd))    
-    print("▶ call Target 4th : {0:,.0f}".format(upbit_target_call_4th))
+    print("▶ call Target 4th : {0:,.0f}".format(upbit_target_recall_1th))
 
     print(f"---------------------------------------------------------")    
     print("▶ - sell 1st : {0:,.0f}".format(upbit_target_down_1st))
