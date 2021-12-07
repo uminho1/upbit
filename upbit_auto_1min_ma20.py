@@ -162,4 +162,4 @@ while True:
     print("▶ Price Avg : {0:,.0f}".format(krw_call_price))
     print("▶ Upbit KRW : {0:,.0f}".format(krw_balance))
 
-    time.sleep(3)
+    time.sleep(3)  #3sec
