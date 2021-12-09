@@ -35,43 +35,43 @@ while True:
     price = round(pyupbit.get_current_price(coin), 0)
     price_gap = price - upbit_target
     
-    total_krw = 920000
-    if call_count == 1:        
+    total_krw = 1540000
+    if call_count <= 1:        
         call_KRW_1st = total_krw * (10.0/100)
-        call_KRW_2nd = total_krw * (30.0/100)
-        call_KRW_3rd = total_krw * (60.0/100)
-        recall_KRW_4th = total_krw * (40.0/100)
+        call_KRW_2nd = total_krw * (38.0/100)
+        call_KRW_3rd = total_krw * (52.0/100)
+        recall_KRW_4th = total_krw * (25.0/100)
 
     if call_count <= 3:
-        sell_KRW_1st = total_krw * (2.0/100)
-        sell_KRW_2nd = total_krw * (98.0/100)
+        sell_KRW_1st = total_krw * (0.5/100)
+        sell_KRW_2nd = total_krw * (99.5/100)
 
-    if plus_sell_count == 0:
-        plus_KRW_1st = krw_balance * (35.0/100)
-        plus_KRW_2nd = krw_balance * (65.0/100)
+    if plus_sell_count <= 1:
+        plus_KRW_1st = total_krw * (45.0/100)
+        plus_KRW_2nd = total_krw * (55.0/100)
     
     # 1st_price_value    
     upbit_target_call_1st = upbit_target - (upbit_target * (0.4/100))
     upbit_target_call_1st_gap = price - upbit_target_call_1st
     upbit_target_call_ = ((price / upbit_target) * 100) - 100
-
-    upbit_target_call_2nd = upbit_target - (upbit_target * (0.6/100))
-    upbit_target_call_3rd = upbit_target - (upbit_target * (0.8/100))
-    upbit_target_recall_1th = upbit_target - (upbit_target * (4.5/100))
+    upbit_target_call_2nd = upbit_target - (upbit_target * (0.58/100))
+    upbit_target_call_3rd = upbit_target - (upbit_target * (0.75/100))
+    #====================================================================================================    
+    upbit_target_recall_1th = upbit_target - (upbit_target * (2.5/100))
     #====================================================================================================    
     # - sell value
     upbit_target = upbit_target
-    upbit_target_down_1st = krw_call_price - (krw_call_price * (3.0/100))
-    upbit_target_down_2nd = krw_call_price - (krw_call_price * (3.5/100))
+    upbit_target_down_1st = krw_call_price - (krw_call_price * (1.5/100))
+    upbit_target_down_2nd = krw_call_price - (krw_call_price * (2.0/100))
     if upbit_target_down_1st == 0:
-        upbit_target_down_gap = krw_call_price * (3.0/100)
+        upbit_target_down_gap = krw_call_price * (1.5/100)
     else:    
-        upbit_target_down_gap = krw_call_price * (3.0/100)
+        upbit_target_down_gap = krw_call_price * (1.5/100)
         upbit_target_down_ = abs(100 - ((price / krw_call_price) * 100))
     #====================================================================================================
     # + sell value
     upbit_target_up_1st = krw_call_price + (krw_call_price * (0.45/100))
-    upbit_target_up_2nd = krw_call_price + (krw_call_price * (0.8/100))
+    upbit_target_up_2nd = krw_call_price + (krw_call_price * (0.70/100))
     if upbit_target_up_1st == 0:
         upbit_target_up_1st_gap = 0
     else:    
@@ -90,29 +90,30 @@ while True:
     if price is not None and call_count == 2 and price < upbit_target and price < upbit_target_call_2nd:
         krw_balance = upbit.get_balance("KRW")        
         call_now = datetime.datetime.now()
-        upbit.buy_market_order(coin, call_KRW_2nd) #25%
+        upbit.buy_market_order(coin, call_KRW_2nd) #38%
         call_count = 3
 
     # 3rd_price_value 
     if price is not None and call_count == 3 and price < upbit_target and price < upbit_target_call_3rd:
         krw_balance = upbit.get_balance("KRW")        
         call_now = datetime.datetime.now()
-        upbit.buy_market_order(coin, call_KRW_3rd) #65%
+        upbit.buy_market_order(coin, call_KRW_3rd) #52%
         call_count = 3
 
     # - sell 1st
-    if call_count <=3 and sell_count == 0 and price < upbit_target and price < upbit_target_down_1st:   
-        krw_balance = upbit.get_balance("KRW")
-        upbit.sell_market_order(coin, sell_KRW_1st)        
-        sell_count = 1
-        time.sleep(300000) #5min wait
+    #if call_count <=3 and sell_count == 0 and price < upbit_target and price < upbit_target_down_1st:   
+    #    krw_balance = upbit.get_balance("KRW")
+    #    upbit.sell_market_order(coin, sell_KRW_1st)        
+    #    sell_count = 1
+    #    recall_count = 1
+    #    time.sleep(900000) #15min wait
 
     # - sell 2nd
-    if sell_count == 1 and price < upbit_target and price < upbit_target_down_2nd:   
-        krw_balance = upbit.get_balance("KRW")
-        upbit.sell_market_order(coin, sell_KRW_2nd)        
-        recall_count = 1        
-        time.sleep(600000) #10min wait    
+    #if sell_count == 1 and price < upbit_target and price < upbit_target_down_2nd:   
+    #    krw_balance = upbit.get_balance("KRW")
+    #    upbit.sell_market_order(coin, sell_KRW_2nd)        
+    #    recall_count = 1        
+    #    time.sleep(1800000) #30min wait    
 
     # recall 1th_price
     if recall_count == 1 and price is not None and price < upbit_target and price < upbit_target_recall_1th:
@@ -122,6 +123,7 @@ while True:
         call_count = 1
         sell_count = 0
         recall_count = 0
+        plus_sell_count = 0
 
     # + sell 1st
     if plus_sell_count == 0 and krw_call_price > 1 and price > upbit_target and price > upbit_target_up_1st:        
