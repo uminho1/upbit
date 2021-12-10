@@ -13,7 +13,7 @@ plus_sell_count = 0
 # -----------------------------------------------------------------
 def price_ma():
     url = "https://api.upbit.com/v1/candles/minutes/1"
-    querystring = {"market":'KRW-ETH',"count":"200"}    
+    querystring = {"market":coin,"count":"200"}    
     response = requests.request("GET", url, params=querystring)    
     data = response.json()    
     df = pd.DataFrame(data)    
