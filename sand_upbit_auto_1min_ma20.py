@@ -36,19 +36,16 @@ while True:
     price_gap = price - upbit_target
     
     total_krw = 1540000
-    if call_count <= 1:        
-        call_KRW_1st = total_krw * (10.0/100)
-        call_KRW_2nd = total_krw * (38.0/100)
-        call_KRW_3rd = total_krw * (52.0/100)
-        recall_KRW_4th = total_krw * (25.0/100)
+    call_KRW_1st = total_krw * (10.0/100)
+    call_KRW_2nd = total_krw * (38.0/100)
+    call_KRW_3rd = total_krw * (52.0/100)
+    recall_KRW_4th = total_krw * (25.0/100)
+    
+    sell_KRW_1st = total_krw * (0.5/100)
+    sell_KRW_2nd = total_krw * (99.5/100)
 
-    if call_count <= 3:
-        sell_KRW_1st = total_krw * (0.5/100)
-        sell_KRW_2nd = total_krw * (99.5/100)
-
-    if plus_sell_count <= 0:
-        plus_KRW_1st = total_krw * (45.0/100)
-        plus_KRW_2nd = total_krw * (55.0/100)
+    plus_KRW_1st = total_krw * (45.0/100)
+    plus_KRW_2nd = total_krw * (55.0/100)
     
     # 1st_price_value    
     upbit_target_call_1st = upbit_target - (upbit_target * (0.4/100))
