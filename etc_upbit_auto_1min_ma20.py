@@ -86,7 +86,7 @@ while True:
     # - sell (손절)
     if call_count <=3 and price < upbit_target and price < upbit_target_down:   
         krw_balance = upbit.get_balance("KRW")
-        #upbit.sell_market_order(coin, call_total_krw)
+        upbit.sell_market_order(coin, call_total_krw)
         recall_count = 1
         time.sleep(60000) #10min wait
 
