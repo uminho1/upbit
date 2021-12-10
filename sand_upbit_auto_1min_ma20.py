@@ -6,7 +6,7 @@ import requests
 import pandas as pd
 # -----------------------------------------------------------------
 coin = "KRW-SAND"
-call_count = 0
+call_count = 1
 sell_count = 0
 recall_count = 0
 plus_sell_count = 0
@@ -36,7 +36,7 @@ while True:
     price_gap = price - upbit_target
     
     total_krw = 1540000
-    if call_count <= 0:        
+    if call_count <= 1:        
         call_KRW_1st = total_krw * (10.0/100)
         call_KRW_2nd = total_krw * (38.0/100)
         call_KRW_3rd = total_krw * (52.0/100)
@@ -103,7 +103,7 @@ while True:
     # - sell 1st
     if call_count <=3 and sell_count == 0 and price < upbit_target and price < upbit_target_down_1st:   
         krw_balance = upbit.get_balance("KRW")
-    #    upbit.sell_market_order(coin, sell_KRW_1st)        
+        upbit.sell_market_order(coin, sell_KRW_1st)        
         sell_count = 1
         recall_count = 1
         time.sleep(900000) #15min wait
@@ -111,7 +111,7 @@ while True:
     # - sell 2nd
     if sell_count == 1 and price < upbit_target and price < upbit_target_down_2nd:   
         krw_balance = upbit.get_balance("KRW")
-    #    upbit.sell_market_order(coin, sell_KRW_2nd)        
+        upbit.sell_market_order(coin, sell_KRW_2nd)        
         recall_count = 1        
         time.sleep(1800000) #30min wait    
 
