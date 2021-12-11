@@ -86,11 +86,16 @@ while True:
     if call_count <=3 and price < upbit_target and price < upbit_target_down:   
         krw_balance = upbit.get_balance("KRW")
         upbit.sell_market_order(coin, call_total_krw)
-        recall_count = 1
-        time.sleep(180000) #30min wait
+
+        if price < upbit_target_recall_1th:
+            recall_count = 1
+            time.sleep(180000) #30min wait
+        else:
+            call_count = 1
+            time.sleep(180000) #30min wait
 
     # recall 1th_price (익절후 재매수)
-    if recall_count == 1 and price is not None and price < upbit_target and price < upbit_target_recall_1th:                   
+    if recall_count == 1 and price is not None and price < upbit_target and price < upbit_target_recall_1th:
         upbit.buy_market_order(coin, recall_KRW_4th)
         call_count = 1
         time.sleep(3600000) #60min wait
