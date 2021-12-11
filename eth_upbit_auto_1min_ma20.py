@@ -38,12 +38,12 @@ while True:
     #Setting Value
     call_KRW_1st = total_krw * (7.0/100)
     call_KRW_2nd = total_krw * (40.0/100)
-    call_KRW_3rd = total_krw * (40/100)
+    call_KRW_3rd = total_krw * (53/100)
     recall_KRW_4th = total_krw * (30.0/100)
     #====================================================================================================
     # 1st_price_value    
     upbit_target_call_1st = upbit_target - (upbit_target * (0.19/100))    
-    upbit_target_call_2nd = upbit_target - (upbit_target * (0.28/100))
+    upbit_target_call_2nd = upbit_target - (upbit_target * (0.29/100))
     upbit_target_call_3rd = upbit_target - (upbit_target * (0.40/100))
 
     Gap1st = abs(upbit_target - upbit_target_call_1st)
