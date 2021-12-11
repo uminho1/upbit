@@ -24,8 +24,7 @@ upbit =  pyupbit.Upbit(access, secret)
 # -----------------------------------------------------------------
 coin = "KRW-ETH"
 call_count = 1
-sell_count = 0
-total_krw = 300000  #사용할 잔고
+total_krw = 100000  #사용할 잔고
 call_total_krw = 0
 # -----------------------------------------------------------------
 while True:
@@ -43,9 +42,9 @@ while True:
     recall_KRW_4th = total_krw * (30.0/100)
     #====================================================================================================
     # 1st_price_value    
-    upbit_target_call_1st = upbit_target - (upbit_target * (0.35/100))    
-    upbit_target_call_2nd = upbit_target - (upbit_target * (0.50/100))
-    upbit_target_call_3rd = upbit_target - (upbit_target * (0.65/100))
+    upbit_target_call_1st = upbit_target - (upbit_target * (0.19/100))    
+    upbit_target_call_2nd = upbit_target - (upbit_target * (0.28/100))
+    upbit_target_call_3rd = upbit_target - (upbit_target * (0.40/100))
 
     Gap1st = abs(upbit_target - upbit_target_call_1st)
     Gap2nd = abs(upbit_target - upbit_target_call_2nd)
@@ -55,7 +54,7 @@ while True:
     upbit_target_down = krw_call_avg_price - (krw_call_avg_price * (1.5/100))
     #====================================================================================================
     # + sell value
-    upbit_target_plusup = krw_call_avg_price + (krw_call_avg_price * (0.60/100))
+    upbit_target_plusup = krw_call_avg_price + (krw_call_avg_price * (0.40/100))
     #====================================================================================================        
     # 1st_price_value 
     if price is not None and call_count == 1 and price < upbit_target and price < upbit_target_call_1st:
@@ -81,7 +80,7 @@ while True:
         call_total_krw = call_total_krw + call_KRW_3rd
 
     # - sell (손절)
-    if krw_call_avg_price > 1 and price < upbit_target_down:        
+    if price < upbit_target_down:        
         coin_balance = upbit.get_balance(coin)
         upbit.sell_market_order(coin, coin_balance)
         call_count = 1
@@ -89,7 +88,7 @@ while True:
         time.sleep(360000) #60min wait
 
     # + sell (익절)
-    if krw_call_avg_price > 1 and price > upbit_target and price > upbit_target_plusup:
+    if price > upbit_target and price > upbit_target_plusup:
         coin_balance = upbit.get_balance(coin)
         upbit.sell_market_order(coin, coin_balance)
         call_count = 1
