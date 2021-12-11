@@ -37,8 +37,8 @@ while True:
     #====================================================================================================
     #Setting Value
     call_KRW_1st = total_krw * (7.0/100)
-    call_KRW_2nd = total_krw * (45.0/100)
-    call_KRW_3rd = total_krw * (47/100)
+    call_KRW_2nd = total_krw * (40.0/100)
+    call_KRW_3rd = total_krw * (40/100)
     recall_KRW_4th = total_krw * (30.0/100)
     #====================================================================================================
     # 1st_price_value    
