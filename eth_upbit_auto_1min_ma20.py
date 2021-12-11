@@ -104,13 +104,10 @@ while True:
     print("▶ call Target 1st : {0:,.0f}".format(upbit_target_call_1st), "▶ Gap 1st : {0:,.0f}".format(Gap1st))
     print("▶ call Target 2nd : {0:,.0f}".format(upbit_target_call_2nd), "▶ Gap 2nd : {0:,.0f}".format(Gap2nd))
     print("▶ call Target 3rd : {0:,.0f}".format(upbit_target_call_3rd), "▶ Gap 3rd : {0:,.0f}".format(Gap3rd))
-    print("▶ recall_count: {0:,.0f}".format(recall_count))
-
     print(f"---------------------------------------------------------")
     print("▶ sell_count: {0:,.0f}".format(sell_count)) 
     print("▶ - sell 1st : {0:,.0f}".format(upbit_target_down))
-    print(f"---------------------------------------------------------")
-    print("▶ plus_sell_count: {0:,.0f}".format(plus_sell_count)) 
+    print(f"---------------------------------------------------------")    
     print("▶ plus sell 1st : {0:,.0f}".format(upbit_target_plusup))
     print(f"---------------------------------------------------------")
     print("▶ Coin Price Avg : {0:,.0f}".format(krw_call_avg_price))  #코인 매수 평단가
