@@ -22,14 +22,13 @@ secret = "pH5hvBYyC2wvchkGTyz8gYYGsBvSgv0ZGFMPh66Z"
 upbit =  pyupbit.Upbit(access, secret)
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
-#coin = "KRW-ETC"
 coin = "KRW-ETH"
 call_count = 1
 sell_count = 0
 recall_count = 0
 plus_sell_count = 0
 
-total_krw = 50000
+total_krw = 1490000
 call_total_krw = 0
 # -----------------------------------------------------------------
 while True:
@@ -43,7 +42,7 @@ while True:
     #Setting Value
     call_KRW_1st = total_krw * (12.0/100)
     call_KRW_2nd = total_krw * (38.0/100)
-    call_KRW_3rd = total_krw * (52.0/100)
+    call_KRW_3rd = total_krw * (50.0/100)
     recall_KRW_4th = total_krw * (50.0/100)
     #====================================================================================================
     # 1st_price_value    
@@ -88,13 +87,13 @@ while True:
         krw_balance = upbit.get_balance("KRW")
         upbit.sell_market_order(coin, call_total_krw)
         recall_count = 1
-        time.sleep(60000) #10min wait
+        time.sleep(180000) #30min wait
 
     # recall 1th_price (익절후 재매수)
     if recall_count == 1 and price is not None and price < upbit_target and price < upbit_target_recall_1th:                   
         upbit.buy_market_order(coin, recall_KRW_4th)
         call_count = 1
-        time.sleep(1800000) #30min wait
+        time.sleep(3600000) #60min wait
 
     # + sell (익절)
     if price > upbit_target and price > upbit_target_up:
