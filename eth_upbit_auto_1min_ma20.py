@@ -25,7 +25,7 @@ upbit =  pyupbit.Upbit(access, secret)
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 coin = "KRW-ETH"
-call_count = 0
+call_count = 1
 total_krw = 500000  #사용할 잔고
 call_total_krw = 0
 call_1st = "No"
