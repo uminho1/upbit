@@ -28,7 +28,7 @@ coin = "KRW-ETH"
 call_count = 1
 sell_count = 0
 plus_count = 0
-total_krw = 700000  #사용할 잔고
+total_krw = 300000  #사용할 잔고
 call_total_krw = 0
 call_1st = "No"
 call_2nd = "No"
@@ -44,14 +44,14 @@ while True:
     call_total_krw_ = krw_call_avg_price * coin_balance
     #====================================================================================================
     #Setting Value
-    call_KRW_1st = total_krw * (1.2/100)
+    call_KRW_1st = total_krw * (12.0/100)
     call_KRW_2nd = total_krw * (40.0/100)
     call_KRW_3rd = total_krw * (45.0/100)    
     #====================================================================================================
     # 1st_price_value    
     upbit_target_call_1st = upbit_target - (upbit_target * (0.30/100))    
-    upbit_target_call_2nd = upbit_target - (upbit_target * (0.38/100))
-    upbit_target_call_3rd = upbit_target - (upbit_target * (0.56/100))
+    upbit_target_call_2nd = upbit_target - (upbit_target * (0.40/100))
+    upbit_target_call_3rd = upbit_target - (upbit_target * (0.53/100))
 
     Gap1st = abs(upbit_target - upbit_target_call_1st)
     Gap2nd = abs(upbit_target - upbit_target_call_2nd)
@@ -77,13 +77,12 @@ while True:
         call_total_krw_ = krw_call_avg_price * coin_balance
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d %H:%M:%S'))
         bot.sendMessage(chat_id=chat_id, text="현재가 (-3.0%) : {0:,.0f}".format(price))        
-        bot.sendMessage(chat_id=chat_id, text="매수금액_1st (15%) : {0:,.0f}".format(call_KRW_1st))
-        bot.sendMessage(chat_id=chat_id, text="매수코인수량_1st (15%) : {0:,.0f}".format(coin_balance))
-        bot.sendMessage(chat_id=chat_id, text="매수금액(누적) (15%) : {0:,.0f}".format(call_total_krw_))
+        bot.sendMessage(chat_id=chat_id, text="매수금액_1st (15%) : {0:,.0f}".format(call_KRW_1st))        
+        bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
 
     # 2nd_price_value 
     if price is not None and call_count == 2 and price < upbit_target and price < upbit_target_call_2nd:
-        #upbit.buy_market_order(coin, call_KRW_2nd) #35%
+        upbit.buy_market_order(coin, call_KRW_2nd) #35%
         time.sleep(0.5) #1sec wait        
         call_2nd = "Cell OK"
         call_count = 3
@@ -96,8 +95,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d %H:%M:%S'))
         bot.sendMessage(chat_id=chat_id, text="현재가 (-3.8%): {0:,.0f}".format(price))        
         bot.sendMessage(chat_id=chat_id, text="매수금액_2nd (40%) : {0:,.0f}".format(call_KRW_2nd))
-        bot.sendMessage(chat_id=chat_id, text="매수코인수량_2nd (40%) : {0:,.0f}".format(coin_balance))
-        bot.sendMessage(chat_id=chat_id, text="매수금액(누적) (40%) : {0:,.0f}".format(call_total_krw_))
+        bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
 
     # 3rd_price_value 
     if price is not None and call_count == 3 and price < upbit_target and price < upbit_target_call_3rd:
@@ -113,8 +111,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d %H:%M:%S'))
         bot.sendMessage(chat_id=chat_id, text="현재가 (-5.6%): {0:,.0f}".format(price))        
         bot.sendMessage(chat_id=chat_id, text="매수금액_3rd (45%) : {0:,.0f}".format(call_KRW_3rd))
-        bot.sendMessage(chat_id=chat_id, text="매수코인수량_3rd (45%) : {0:,.0f}".format(coin_balance))
-        bot.sendMessage(chat_id=chat_id, text="매수금액(누적) (45%) : {0:,.0f}".format(call_total_krw_))
+        bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
 
     # - sell (손절)
     if sell_count == 1 and price < upbit_target and price < upbit_target_down:        
