@@ -25,7 +25,7 @@ upbit =  pyupbit.Upbit(access, secret)
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 coin = "KRW-ETH"     #거래할 코인 설정
-total_krw = 200000   #사용할 자금 금액 설정
+total_krw = 300000   #사용할 자금 금액 설정
 # -----------------------------------------------------------------
 call_count = 1
 sell_count = 0
@@ -46,13 +46,13 @@ while True:
     call_total_krw_ = krw_call_avg_price * coin_balance
     #====================================================================================================
     #Setting Value
-    call_KRW_1st = total_krw * (5.0/100)
-    call_KRW_2nd = total_krw * (10.0/100)
+    call_KRW_1st = total_krw * (2.0/100)
+    call_KRW_2nd = total_krw * (13.0/100)
     call_KRW_3rd = total_krw * (35.0/100)
     call_KRW_4st = total_krw * (50.0/100)
     #====================================================================================================
     # 1st_price_value    
-    upbit_target_call_1st = upbit_target - (upbit_target * (0.28/100))    
+    upbit_target_call_1st = upbit_target - (upbit_target * (0.30/100))    
     upbit_target_call_2nd = upbit_target - (upbit_target * (0.43/100))
     upbit_target_call_3rd = upbit_target - (upbit_target * (0.65/100))
     upbit_target_call_4st = upbit_target - (upbit_target * (0.90/100))
@@ -66,11 +66,12 @@ while True:
     upbit_target_down = krw_call_avg_price - (krw_call_avg_price * (1.1/100))
     #====================================================================================================
     # + sell value
-    upbit_target_plus_up = krw_call_avg_price + (krw_call_avg_price * (2.9/100))
+    upbit_target_plus_up = krw_call_avg_price + (krw_call_avg_price * (2.9/100))  #익절설정
+    upbit_target_plus_up_telegram = krw_call_avg_price + (krw_call_avg_price * (0.7/100))  #익절텔레그램알림
     #====================================================================================================        
     # 1st_price_value 
-    if coin_balance == 0:
-        if price is not None and call_count == 1 and price < upbit_target and price < upbit_target_call_1st:
+    if coin_balance == 0 or call_count == 1:
+        if price is not None and price < upbit_target and price < upbit_target_call_1st:
             upbit.buy_market_order(coin, call_KRW_1st)
             time.sleep(0.5) #1sec wait
             call_1st = "1차매수 완료"
@@ -87,12 +88,12 @@ while True:
             bot.sendMessage(chat_id=chat_id, text="매수금액_1st : {0:,.0f}".format(call_KRW_1st))
             bot.sendMessage(chat_id=chat_id, text="매수코인수량_1st : {0:,.5f}".format(coin_balance))
             bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
-            bot.sendMessage(chat_id=chat_id, text="계좌잔액 : {0:,.0f}".format(krw_balance))
+            bot.sendMessage(chat_id=chat_id, text="계좌잔액 : {0:,.0f}".format(krw_balance))            
+            bot.sendMessage(chat_id=chat_id, text="●1차매수단가: {0:,.0f}".format(upbit_target_call_1st))
+            bot.sendMessage(chat_id=chat_id, text="●2차매수단가: {0:,.0f}".format(upbit_target_call_2nd))
+            bot.sendMessage(chat_id=chat_id, text="●3차매수단가: {0:,.0f}".format(upbit_target_call_3rd))
+            bot.sendMessage(chat_id=chat_id, text="●4차매수단가: {0:,.0f}".format(upbit_target_call_4st))
             bot.sendMessage(chat_id=chat_id, text="=============================")
-            bot.sendMessage(chat_id=chat_id, text="1차매수단가: {0:,.0f}".format(upbit_target_call_1st))
-            bot.sendMessage(chat_id=chat_id, text="2차매수단가: {0:,.0f}".format(upbit_target_call_2nd))
-            bot.sendMessage(chat_id=chat_id, text="3차매수단가: {0:,.0f}".format(upbit_target_call_3rd))
-            bot.sendMessage(chat_id=chat_id, text="4차매수단가: {0:,.0f}".format(upbit_target_call_4st))            
 
     # 2nd_price_value 
     if price is not None and call_count == 2 and price < upbit_target and price < upbit_target_call_2nd:
@@ -113,11 +114,11 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="매수코인수량_2nd : {0:,.5f}".format(coin_balance))
         bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
         bot.sendMessage(chat_id=chat_id, text="계좌잔액 : {0:,.0f}".format(krw_balance))
+        bot.sendMessage(chat_id=chat_id, text="●1차매수단가: {0:,.0f}".format(upbit_target_call_1st))
+        bot.sendMessage(chat_id=chat_id, text="●2차매수단가: {0:,.0f}".format(upbit_target_call_2nd))
+        bot.sendMessage(chat_id=chat_id, text="●3차매수단가: {0:,.0f}".format(upbit_target_call_3rd))
+        bot.sendMessage(chat_id=chat_id, text="●4차매수단가: {0:,.0f}".format(upbit_target_call_4st))
         bot.sendMessage(chat_id=chat_id, text="=============================")
-        bot.sendMessage(chat_id=chat_id, text="1차매수단가: {0:,.0f}".format(upbit_target_call_1st))
-        bot.sendMessage(chat_id=chat_id, text="2차매수단가: {0:,.0f}".format(upbit_target_call_2nd))
-        bot.sendMessage(chat_id=chat_id, text="3차매수단가: {0:,.0f}".format(upbit_target_call_3rd))
-        bot.sendMessage(chat_id=chat_id, text="4차매수단가: {0:,.0f}".format(upbit_target_call_4st))
 
     # 3rd_price_value 
     if price is not None and call_count == 3 and price < upbit_target and price < upbit_target_call_3rd:
@@ -138,11 +139,11 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="매수코인수량_3rd : {0:,.5f}".format(coin_balance))
         bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
         bot.sendMessage(chat_id=chat_id, text="계좌잔액 : {0:,.0f}".format(krw_balance))
+        bot.sendMessage(chat_id=chat_id, text="●1차매수단가: {0:,.0f}".format(upbit_target_call_1st))
+        bot.sendMessage(chat_id=chat_id, text="●2차매수단가: {0:,.0f}".format(upbit_target_call_2nd))
+        bot.sendMessage(chat_id=chat_id, text="●3차매수단가: {0:,.0f}".format(upbit_target_call_3rd))
+        bot.sendMessage(chat_id=chat_id, text="●4차매수단가: {0:,.0f}".format(upbit_target_call_4st))
         bot.sendMessage(chat_id=chat_id, text="=============================")
-        bot.sendMessage(chat_id=chat_id, text="1차매수단가: {0:,.0f}".format(upbit_target_call_1st))
-        bot.sendMessage(chat_id=chat_id, text="2차매수단가: {0:,.0f}".format(upbit_target_call_2nd))
-        bot.sendMessage(chat_id=chat_id, text="3차매수단가: {0:,.0f}".format(upbit_target_call_3rd))
-        bot.sendMessage(chat_id=chat_id, text="4차매수단가: {0:,.0f}".format(upbit_target_call_4st))
 
     # 4st_price_value 
     if price is not None and call_count == 4 and price < upbit_target and price < upbit_target_call_4st:
@@ -177,23 +178,43 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="현재가 (-1.1%): {0:,.0f}".format(price))
         bot.sendMessage(chat_id=chat_id, text="손절코인수량 : {0:,.5f}".format(coin_balance))
         #telegram-------------------------------------------------
-        time.sleep(10800) #3Hr wait
+        time.sleep(3600) #1Hr wait
+        price = round(pyupbit.get_current_price(coin), 0) #현재가
+        bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
+        bot.sendMessage(chat_id=chat_id, text=" 손절 1시간후 현재가 : {0:,.0f}".format(price))
+        time.sleep(3600) #1Hr wait
+        price = round(pyupbit.get_current_price(coin), 0) #현재가
+        bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
+        bot.sendMessage(chat_id=chat_id, text=" 손절 2시간후 현재가 : {0:,.0f}".format(price))
+        time.sleep(3600) #1Hr wait
+        price = round(pyupbit.get_current_price(coin), 0) #현재가
+        bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
+        bot.sendMessage(chat_id=chat_id, text=" 손절 3시간후 현재가 : {0:,.0f}".format(price))
+        bot.sendMessage(chat_id=chat_id, text=" 자동매매 재시작합니다.")        
 
     # + sell (익절)
     if plus_count == 1 and price > upbit_target and price > upbit_target_plus_up:
         coin_balance = upbit.get_balance(coin)
-        krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)
-        plus_sell_total_krw_ = krw_call_avg_price * coin_balance
+        krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)        
         upbit.sell_market_order(coin, coin_balance)
         call_count = 1
         plus_count = 0
         call_total_krw = 0
         #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
-        bot.sendMessage(chat_id=chat_id, text="현재가 (+2.5%): {0:,.0f}".format(price))
+        bot.sendMessage(chat_id=chat_id, text="현재가 (+2.9%): {0:,.0f}".format(price))
         bot.sendMessage(chat_id=chat_id, text="익절코인수량 : {0:,.5f}".format(coin_balance))
-        bot.sendMessage(chat_id=chat_id, text="익절금액 : {0:,.0f}".format(plus_sell_total_krw_))        
         #telegram-------------------------------------------------
+    
+    # 익절시 텔레그램 알림
+    if plus_count == 1 and price > upbit_target and price > upbit_target_plus_up_telegram:
+        price = round(pyupbit.get_current_price(coin), 0) #현재가
+        #telegram-------------------------------------------------                
+        bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
+        bot.sendMessage(chat_id=chat_id, text="현재가 (+0.7%) 도달: {0:,.0f}".format(price))
+        bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
+        #telegram-------------------------------------------------
+        
         
     print(f"=========================================================")
     print(now.strftime('▶ Time: %y/%m/%d %H:%M:%S'))    
