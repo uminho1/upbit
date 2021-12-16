@@ -35,7 +35,7 @@ call_1st = "매수대기"
 call_2nd = "매수대기"
 call_3rd = "매수대기"
 call_4st = "매수대기"
-log = 0
+log = 0  #0이면 Event발생시 로그생성, 1이면 3초마다 로그생성
 # -----------------------------------------------------------------
 while True:
     now = datetime.datetime.now()
@@ -168,6 +168,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="매수코인수량_4st : {0:,.5f}".format(coin_balance))
         bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
         bot.sendMessage(chat_id=chat_id, text="계좌잔액 : {0:,.0f}".format(krw_balance))
+        bot.sendMessage(chat_id=chat_id, text="=============================")
 
     # - sell (손절)
     if sell_count == 1 and price < upbit_target and price < upbit_target_down:        
@@ -196,7 +197,8 @@ while True:
         price = round(pyupbit.get_current_price(coin), 0) #현재가
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
         bot.sendMessage(chat_id=chat_id, text=" 손절 3시간후 현재가 : {0:,.0f}".format(price))
-        bot.sendMessage(chat_id=chat_id, text=" 자동매매 재시작합니다.")        
+        bot.sendMessage(chat_id=chat_id, text=" 자동매매 재시작합니다.")
+        bot.sendMessage(chat_id=chat_id, text="=============================")
 
     # + sell (익절)
     if plus_count == 1 and price > upbit_target and price > upbit_target_plus_up:
@@ -211,15 +213,18 @@ while True:
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
         bot.sendMessage(chat_id=chat_id, text="현재가 (+2.9%): {0:,.0f}".format(price))
         bot.sendMessage(chat_id=chat_id, text="익절코인수량 : {0:,.5f}".format(coin_balance))
+        bot.sendMessage(chat_id=chat_id, text="=============================")
         #telegram-------------------------------------------------
     
-    # 익절시 텔레그램 알림
+    # 1차 익절가 도달시 텔레그램 알림
     if plus_count == 1 and price > upbit_target and price > upbit_target_plus_up_telegram:
         price = round(pyupbit.get_current_price(coin), 0) #현재가
         #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
         bot.sendMessage(chat_id=chat_id, text="현재가 (+0.7%) 도달: {0:,.0f}".format(price))
         bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
+        bot.sendMessage(chat_id=chat_id, text="익절할려면 수동 매도 바랍니다.")
+        bot.sendMessage(chat_id=chat_id, text="=============================")
         #telegram-------------------------------------------------
         
     if log == 1:    
