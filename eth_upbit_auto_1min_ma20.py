@@ -36,7 +36,7 @@ call_2nd = "매수대기"
 call_3rd = "매수대기"
 call_4st = "매수대기"
 telegram_on = 1
-log = 0  #0이면 Event발생시 로그생성, 1이면 3초마다 로그생성
+log = 1  #0이면 Event발생시 로그생성, 1이면 3초마다 로그생성
 # -----------------------------------------------------------------
 while True:
     now = datetime.datetime.now()
@@ -55,7 +55,7 @@ while True:
     #====================================================================================================
     # 1st_price_value    
     upbit_target_call_1st = upbit_target - (upbit_target * (0.30/100))    
-    upbit_target_call_2nd = upbit_target - (upbit_target * (0.43/100))
+    upbit_target_call_2nd = upbit_target - (upbit_target * (0.47/100))
     upbit_target_call_3rd = upbit_target - (upbit_target * (0.65/100))
     upbit_target_call_4st = upbit_target - (upbit_target * (0.90/100))
 
@@ -65,7 +65,8 @@ while True:
     Gap4st = abs(upbit_target_call_3rd - upbit_target_call_4st)
     #====================================================================================================    
     # - sell value
-    upbit_target_down = krw_call_avg_price - (krw_call_avg_price * (1.1/100))
+    upbit_target_down = krw_call_avg_price - (krw_call_avg_price * (1.1/100)) #손절설정
+    upbit_target_down_telegram = krw_call_avg_price - (krw_call_avg_price * (0.5/100)) #손절텔레그램알림
     #====================================================================================================
     # + sell value
     upbit_target_plus_up = krw_call_avg_price + (krw_call_avg_price * (2.9/100))  #익절설정
@@ -74,7 +75,7 @@ while True:
     # 1st_price_value 
     if coin_balance == 0 or call_count == 1:
         if price is not None and price < upbit_target and price < upbit_target_call_1st:
-            upbit.buy_market_order(coin, call_KRW_1st)
+            #upbit.buy_market_order(coin, call_KRW_1st)
             time.sleep(0.5) #1sec wait
             call_1st = "1차매수 완료"
             call_count = 2
@@ -115,7 +116,7 @@ while True:
         call_total_krw_ = call_total_krw_ + call_KRW_2nd
         krw_balance = round(upbit.get_balance("KRW"), 0) #잔고조회
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
-        bot.sendMessage(chat_id=chat_id, text="현재가 (-0.43% 하락단가) : {0:,.0f}".format(price))        
+        bot.sendMessage(chat_id=chat_id, text="현재가 (-0.47% 하락단가) : {0:,.0f}".format(price))        
         bot.sendMessage(chat_id=chat_id, text="매수금액_2nd : {0:,.0f}".format(call_KRW_2nd))
         bot.sendMessage(chat_id=chat_id, text="매수코인수량_2nd : {0:,.5f}".format(coin_balance))
         bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
@@ -176,7 +177,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="=============================")
 
     # - sell (손절)
-    if sell_count == 1 and price < upbit_target and price < upbit_target_down:        
+    if sell_count == 1 and price < upbit_target and price < upbit_target_down:
         coin_balance = upbit.get_balance(coin)
         krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)
         upbit.sell_market_order(coin, coin_balance)
@@ -206,6 +207,17 @@ while True:
         bot.sendMessage(chat_id=chat_id, text=" 자동매매 재시작합니다.")
         bot.sendMessage(chat_id=chat_id, text="=============================")
 
+    # 1차 손절가 도달시 텔레그램 알림
+    if telegram_on == 1 and price < upbit_target and price < upbit_target_down_telegram:
+        telegram_on = 0
+        price = round(pyupbit.get_current_price(coin), 0) #현재가        
+        #telegram-------------------------------------------------                
+        bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
+        bot.sendMessage(chat_id=chat_id, text="현재가 (-0.5%) 도달: {0:,.0f}".format(price))
+        bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
+        bot.sendMessage(chat_id=chat_id, text="손절할려면 수동 매도 바랍니다.")
+        bot.sendMessage(chat_id=chat_id, text="=============================")        
+
     # + sell (익절)
     if plus_count == 1 and price > upbit_target and price > upbit_target_plus_up:
         coin_balance = upbit.get_balance(coin)
@@ -224,7 +236,7 @@ while True:
         #telegram-------------------------------------------------
     
     # 1차 익절가 도달시 텔레그램 알림
-    if telegram_on == 1 and plus_count == 1 and price > upbit_target and price > upbit_target_plus_up_telegram:
+    if telegram_on == 1 and price > upbit_target and price > upbit_target_plus_up_telegram:
         telegram_on = 0
         price = round(pyupbit.get_current_price(coin), 0) #현재가
         #telegram-------------------------------------------------                
