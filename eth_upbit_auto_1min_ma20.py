@@ -35,6 +35,7 @@ call_1st = "매수대기"
 call_2nd = "매수대기"
 call_3rd = "매수대기"
 call_4st = "매수대기"
+telegram_on = 1
 log = 0  #0이면 Event발생시 로그생성, 1이면 3초마다 로그생성
 # -----------------------------------------------------------------
 while True:
@@ -80,6 +81,7 @@ while True:
             sell_count = 1
             plus_count = 1
             log = 1
+            telegram_on = 1
             #telegram-------------------------------------------------
             coin_balance = upbit.get_balance(coin)
             krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)
@@ -106,6 +108,7 @@ while True:
         sell_count = 1
         plus_count = 1
         log = 1
+        telegram_on = 1
         #telegram-------------------------------------------------
         coin_balance = upbit.get_balance(coin)
         krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)
@@ -132,6 +135,7 @@ while True:
         sell_count = 1
         plus_count = 1
         log = 1
+        telegram_on = 1
         #telegram-------------------------------------------------
         coin_balance = upbit.get_balance(coin)
         krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)
@@ -157,6 +161,7 @@ while True:
         sell_count = 1
         plus_count = 1
         log = 1
+        telegram_on = 1
         #telegram-------------------------------------------------
         coin_balance = upbit.get_balance(coin)
         krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)
@@ -180,6 +185,7 @@ while True:
         plus_count = 0
         call_total_krw = 0
         log = 1
+        telegram_on = 1
         #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
         bot.sendMessage(chat_id=chat_id, text="현재가 (-1.1%): {0:,.0f}".format(price))
@@ -209,6 +215,7 @@ while True:
         plus_count = 0
         call_total_krw = 0
         log = 1
+        telegram_on = 1
         #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
         bot.sendMessage(chat_id=chat_id, text="현재가 (+2.9%): {0:,.0f}".format(price))
@@ -217,7 +224,8 @@ while True:
         #telegram-------------------------------------------------
     
     # 1차 익절가 도달시 텔레그램 알림
-    if plus_count == 1 and price > upbit_target and price > upbit_target_plus_up_telegram:
+    if telegram_on == 1 and plus_count == 1 and price > upbit_target and price > upbit_target_plus_up_telegram:
+        telegram_on = 0
         price = round(pyupbit.get_current_price(coin), 0) #현재가
         #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
