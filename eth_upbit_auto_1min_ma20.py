@@ -233,7 +233,7 @@ while True:
     print(f"---------------------------------------------------------")    
     print("▶ 코인 수량 : {0:,.5f}".format(coin_balance), "▶ 코인 평단가 : {0:,.0f}".format(krw_call_avg_price)) #코인수량/평단가
     print(f"---------------------------------------------------------")
-    print("▶ 코인 매수 금액 : {0:,.0f}".format(call_total_krw_))
+    print("▶ 매수한 금액 : {0:,.0f}".format(call_total_krw_))
     print("▶ 계좌잔고 : {0:,.0f}".format(krw_balance))
     print("▶ 사용할 자금 : {0:,.0f}".format(total_krw))
 
