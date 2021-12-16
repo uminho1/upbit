@@ -35,6 +35,7 @@ call_1st = "매수대기"
 call_2nd = "매수대기"
 call_3rd = "매수대기"
 call_4st = "매수대기"
+log = 0
 # -----------------------------------------------------------------
 while True:
     now = datetime.datetime.now()
@@ -78,6 +79,7 @@ while True:
             call_count = 2
             sell_count = 1
             plus_count = 1
+            log = 1
             #telegram-------------------------------------------------
             coin_balance = upbit.get_balance(coin)
             krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)
@@ -103,6 +105,7 @@ while True:
         call_count = 3
         sell_count = 1
         plus_count = 1
+        log = 1
         #telegram-------------------------------------------------
         coin_balance = upbit.get_balance(coin)
         krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)
@@ -128,6 +131,7 @@ while True:
         call_count = 4
         sell_count = 1
         plus_count = 1
+        log = 1
         #telegram-------------------------------------------------
         coin_balance = upbit.get_balance(coin)
         krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)
@@ -152,6 +156,7 @@ while True:
         call_4st = "4차매수 완료"
         sell_count = 1
         plus_count = 1
+        log = 1
         #telegram-------------------------------------------------
         coin_balance = upbit.get_balance(coin)
         krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)
@@ -173,6 +178,7 @@ while True:
         sell_count = 0
         plus_count = 0
         call_total_krw = 0
+        log = 1
         #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
         bot.sendMessage(chat_id=chat_id, text="현재가 (-1.1%): {0:,.0f}".format(price))
@@ -200,6 +206,7 @@ while True:
         call_count = 1
         plus_count = 0
         call_total_krw = 0
+        log = 1
         #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
         bot.sendMessage(chat_id=chat_id, text="현재가 (+2.9%): {0:,.0f}".format(price))
@@ -215,26 +222,26 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
         #telegram-------------------------------------------------
         
-        
-    print(f"=========================================================")
-    print(now.strftime('▶ Time: %y/%m/%d %H:%M:%S'))    
-    print("▶ 20일 이동평균선: {0:,.0f}".format(upbit_target))
-    print("▶ 현재가 : {0:,.0f}".format(price))
-    print(f"---------------------------------------------------------")
-    print("▶ call_count: {0:,.0f}".format(call_count))    
-    print("▶ call Target 1st : {0:,.0f}".format(upbit_target_call_1st), "▶ Gap 1st : {0:,.0f}".format(Gap1st), "▶ 매수예정금액 : {0:,.0f}".format(call_KRW_1st), "▶", call_1st)
-    print("▶ call Target 2nd : {0:,.0f}".format(upbit_target_call_2nd), "▶ Gap 2nd : {0:,.0f}".format(Gap2nd), "▶ 매수예정금액 : {0:,.0f}".format(call_KRW_2nd), "▶", call_2nd)
-    print("▶ call Target 3rd : {0:,.0f}".format(upbit_target_call_3rd), "▶ Gap 3rd : {0:,.0f}".format(Gap3rd), "▶ 매수예정금액 : {0:,.0f}".format(call_KRW_3rd), "▶", call_3rd)
-    print("▶ call Target 4st : {0:,.0f}".format(upbit_target_call_4st), "▶ Gap 3rd : {0:,.0f}".format(Gap4st), "▶ 매수예정금액 : {0:,.0f}".format(call_KRW_4st), "▶", call_4st)
-    print(f"---------------------------------------------------------")    
-    print("▶ 손절 예정 단가 : {0:,.0f}".format(upbit_target_down))
-    print(f"---------------------------------------------------------")    
-    print("▶ 익절 예정 단가 : {0:,.0f}".format(upbit_target_plus_up))
-    print(f"---------------------------------------------------------")    
-    print("▶ 코인 수량 : {0:,.5f}".format(coin_balance), "▶ 코인 평단가 : {0:,.0f}".format(krw_call_avg_price)) #코인수량/평단가
-    print(f"---------------------------------------------------------")
-    print("▶ 매수한 금액 : {0:,.0f}".format(call_total_krw_))
-    print("▶ 계좌잔고 : {0:,.0f}".format(krw_balance))
-    print("▶ 사용할 자금 : {0:,.0f}".format(total_krw))
+    if log == 1:    
+        print(f"=========================================================")
+        print(now.strftime('▶ Time: %y/%m/%d %H:%M:%S'))    
+        print("▶ 20일 이동평균선: {0:,.0f}".format(upbit_target))
+        print("▶ 현재가 : {0:,.0f}".format(price))
+        print(f"---------------------------------------------------------")
+        print("▶ call_count: {0:,.0f}".format(call_count))    
+        print("▶ call Target 1st : {0:,.0f}".format(upbit_target_call_1st), "▶ Gap 1st : {0:,.0f}".format(Gap1st), "▶ 매수예정금액 : {0:,.0f}".format(call_KRW_1st), "▶", call_1st)
+        print("▶ call Target 2nd : {0:,.0f}".format(upbit_target_call_2nd), "▶ Gap 2nd : {0:,.0f}".format(Gap2nd), "▶ 매수예정금액 : {0:,.0f}".format(call_KRW_2nd), "▶", call_2nd)
+        print("▶ call Target 3rd : {0:,.0f}".format(upbit_target_call_3rd), "▶ Gap 3rd : {0:,.0f}".format(Gap3rd), "▶ 매수예정금액 : {0:,.0f}".format(call_KRW_3rd), "▶", call_3rd)
+        print("▶ call Target 4st : {0:,.0f}".format(upbit_target_call_4st), "▶ Gap 3rd : {0:,.0f}".format(Gap4st), "▶ 매수예정금액 : {0:,.0f}".format(call_KRW_4st), "▶", call_4st)
+        print(f"---------------------------------------------------------")    
+        print("▶ 손절 예정 단가 : {0:,.0f}".format(upbit_target_down))
+        print(f"---------------------------------------------------------")    
+        print("▶ 익절 예정 단가 : {0:,.0f}".format(upbit_target_plus_up))
+        print(f"---------------------------------------------------------")    
+        print("▶ 코인 수량 : {0:,.5f}".format(coin_balance), "▶ 코인 평단가 : {0:,.0f}".format(krw_call_avg_price)) #코인수량/평단가
+        print(f"---------------------------------------------------------")
+        print("▶ 매수한 금액 : {0:,.0f}".format(call_total_krw_))
+        print("▶ 계좌잔고 : {0:,.0f}".format(krw_balance))
+        print("▶ 사용할 자금 : {0:,.0f}".format(total_krw))
 
     time.sleep(3)
