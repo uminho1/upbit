@@ -166,20 +166,16 @@ while True:
     # - sell (손절)
     if sell_count == 1 and price < upbit_target and price < upbit_target_down:        
         coin_balance = upbit.get_balance(coin)
-        krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)        
-        sell_total_krw_ = krw_call_avg_price * coin_balance
+        krw_call_avg_price = round(upbit.get_avg_buy_price(coin), 0)
         upbit.sell_market_order(coin, coin_balance)
         call_count = 1
         sell_count = 0
         plus_count = 0
         call_total_krw = 0
-        #telegram-------------------------------------------------        
-        _sell_krw_ = sell_total_krw_ - call_total_krw_
+        #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
         bot.sendMessage(chat_id=chat_id, text="현재가 (-1.1%): {0:,.0f}".format(price))
         bot.sendMessage(chat_id=chat_id, text="손절코인수량 : {0:,.5f}".format(coin_balance))
-        bot.sendMessage(chat_id=chat_id, text="손절금액 : {0:,.0f}".format(sell_total_krw_))
-        bot.sendMessage(chat_id=chat_id, text="손실금액 : {0:,.0f}".format(_sell_krw_))
         #telegram-------------------------------------------------
         time.sleep(10800) #3Hr wait
 
@@ -192,13 +188,11 @@ while True:
         call_count = 1
         plus_count = 0
         call_total_krw = 0
-        #telegram-------------------------------------------------        
-        _plus_krw_ = call_total_krw_ - sell_total_krw_
+        #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
         bot.sendMessage(chat_id=chat_id, text="현재가 (+2.5%): {0:,.0f}".format(price))
         bot.sendMessage(chat_id=chat_id, text="익절코인수량 : {0:,.5f}".format(coin_balance))
-        bot.sendMessage(chat_id=chat_id, text="익절금액 : {0:,.0f}".format(plus_sell_total_krw_))
-        bot.sendMessage(chat_id=chat_id, text="수익금액 : {0:,.0f}".format(_plus_krw_))
+        bot.sendMessage(chat_id=chat_id, text="익절금액 : {0:,.0f}".format(plus_sell_total_krw_))        
         #telegram-------------------------------------------------
         
     print(f"=========================================================")
