@@ -49,8 +49,8 @@ while True:
     #====================================================================================================
     #Setting Value
     call_KRW_1st = total_krw * (2.0/100)
-    call_KRW_2nd = total_krw * (13.0/100)
-    call_KRW_3rd = total_krw * (35.0/100)
+    call_KRW_2nd = total_krw * (10.0/100)
+    call_KRW_3rd = total_krw * (38.0/100)
     call_KRW_4st = total_krw * (50.0/100)
     #====================================================================================================
     # 1st_price_value    
@@ -65,11 +65,11 @@ while True:
     Gap4st = abs(upbit_target_call_3rd - upbit_target_call_4st)
     #====================================================================================================    
     # - sell value
-    upbit_target_down = krw_call_avg_price - (krw_call_avg_price * (1.1/100)) #손절설정
-    upbit_target_down_telegram = krw_call_avg_price - (krw_call_avg_price * (0.5/100)) #손절텔레그램알림
+    upbit_target_down = krw_call_avg_price - (krw_call_avg_price * (2.5/100)) #손절설정
+    upbit_target_down_telegram = krw_call_avg_price - (krw_call_avg_price * (0.7/100)) #손절텔레그램알림
     #====================================================================================================
     # + sell value
-    upbit_target_plus_up = krw_call_avg_price + (krw_call_avg_price * (2.9/100))  #익절설정
+    upbit_target_plus_up = krw_call_avg_price + (krw_call_avg_price * (1.9/100))  #익절설정
     upbit_target_plus_up_telegram = krw_call_avg_price + (krw_call_avg_price * (0.7/100))  #익절텔레그램알림
     #====================================================================================================        
     # 1st_price_value 
@@ -213,7 +213,7 @@ while True:
         price = round(pyupbit.get_current_price(coin), 0) #현재가        
         #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
-        bot.sendMessage(chat_id=chat_id, text="현재가 (-0.5%) 도달: {0:,.0f}".format(price))
+        bot.sendMessage(chat_id=chat_id, text="현재가 (-0.7%) 도달 알림: {0:,.0f}".format(price))
         bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
         bot.sendMessage(chat_id=chat_id, text="손절할려면 수동 매도 바랍니다.")
         bot.sendMessage(chat_id=chat_id, text="=============================")        
@@ -230,7 +230,7 @@ while True:
         telegram_on = 1
         #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
-        bot.sendMessage(chat_id=chat_id, text="현재가 (+2.9%): {0:,.0f}".format(price))
+        bot.sendMessage(chat_id=chat_id, text="현재가 (+1.9%): {0:,.0f}".format(price))
         bot.sendMessage(chat_id=chat_id, text="익절코인수량 : {0:,.5f}".format(coin_balance))
         bot.sendMessage(chat_id=chat_id, text="=============================")
         #telegram-------------------------------------------------
@@ -241,7 +241,7 @@ while True:
         price = round(pyupbit.get_current_price(coin), 0) #현재가
         #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
-        bot.sendMessage(chat_id=chat_id, text="현재가 (+0.7%) 도달: {0:,.0f}".format(price))
+        bot.sendMessage(chat_id=chat_id, text="현재가 (+0.7%) 도달 알림: {0:,.0f}".format(price))
         bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
         bot.sendMessage(chat_id=chat_id, text="익절할려면 수동 매도 바랍니다.")
         bot.sendMessage(chat_id=chat_id, text="=============================")
