@@ -143,7 +143,7 @@ while True:
         call_total_krw_ = call_total_krw_ + call_KRW_3rd
         krw_balance = round(upbit.get_balance("KRW"), 0) #잔고조회
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
-        bot.sendMessage(chat_id=chat_id, text="현재가 (-0.85% 하락단가) : {0:,.0f}".format(price))        
+        bot.sendMessage(chat_id=chat_id, text="현재가 (-1.0% 하락단가) : {0:,.0f}".format(price))        
         bot.sendMessage(chat_id=chat_id, text="매수금액_3rd : {0:,.0f}".format(call_KRW_3rd))
         bot.sendMessage(chat_id=chat_id, text="매수코인수량_3rd : {0:,.5f}".format(coin_balance))
         bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
