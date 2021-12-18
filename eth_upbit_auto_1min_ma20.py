@@ -89,7 +89,7 @@ while True:
             call_total_krw_ = call_total_krw_ + call_KRW_1st
             krw_balance = round(upbit.get_balance("KRW"), 0) #잔고조회
             bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
-            bot.sendMessage(chat_id=chat_id, text="현재가 (-0.28% 하락단가) : {0:,.0f}".format(price))        
+            bot.sendMessage(chat_id=chat_id, text="현재가 (-0.5% 하락단가) : {0:,.0f}".format(price))        
             bot.sendMessage(chat_id=chat_id, text="매수금액_1st : {0:,.0f}".format(call_KRW_1st))
             bot.sendMessage(chat_id=chat_id, text="매수코인수량_1st : {0:,.5f}".format(coin_balance))
             bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
@@ -116,7 +116,7 @@ while True:
         call_total_krw_ = call_total_krw_ + call_KRW_2nd
         krw_balance = round(upbit.get_balance("KRW"), 0) #잔고조회
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
-        bot.sendMessage(chat_id=chat_id, text="현재가 (-0.47% 하락단가) : {0:,.0f}".format(price))        
+        bot.sendMessage(chat_id=chat_id, text="현재가 (-0.68% 하락단가) : {0:,.0f}".format(price))        
         bot.sendMessage(chat_id=chat_id, text="매수금액_2nd : {0:,.0f}".format(call_KRW_2nd))
         bot.sendMessage(chat_id=chat_id, text="매수코인수량_2nd : {0:,.5f}".format(coin_balance))
         bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
@@ -143,7 +143,7 @@ while True:
         call_total_krw_ = call_total_krw_ + call_KRW_3rd
         krw_balance = round(upbit.get_balance("KRW"), 0) #잔고조회
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
-        bot.sendMessage(chat_id=chat_id, text="현재가 (-0.65% 하락단가) : {0:,.0f}".format(price))        
+        bot.sendMessage(chat_id=chat_id, text="현재가 (-0.85% 하락단가) : {0:,.0f}".format(price))        
         bot.sendMessage(chat_id=chat_id, text="매수금액_3rd : {0:,.0f}".format(call_KRW_3rd))
         bot.sendMessage(chat_id=chat_id, text="매수코인수량_3rd : {0:,.5f}".format(coin_balance))
         bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
@@ -169,7 +169,7 @@ while True:
         call_total_krw_ = call_total_krw_ + call_KRW_4st
         krw_balance = round(upbit.get_balance("KRW"), 0) #잔고조회
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
-        bot.sendMessage(chat_id=chat_id, text="현재가(-0.90% 하락단가) : {0:,.0f}".format(price))
+        bot.sendMessage(chat_id=chat_id, text="현재가(-1.5% 하락단가) : {0:,.0f}".format(price))
         bot.sendMessage(chat_id=chat_id, text="매수금액_4st : {0:,.0f}".format(call_KRW_4st))
         bot.sendMessage(chat_id=chat_id, text="매수코인수량_4st : {0:,.5f}".format(coin_balance))
         bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
@@ -189,7 +189,7 @@ while True:
         telegram_on = 1
         #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
-        bot.sendMessage(chat_id=chat_id, text="현재가 (-1.1%): {0:,.0f}".format(price))
+        bot.sendMessage(chat_id=chat_id, text="현재가 (-6.0%): {0:,.0f}".format(price))
         bot.sendMessage(chat_id=chat_id, text="손절코인수량 : {0:,.5f}".format(coin_balance))
         #telegram-------------------------------------------------
         time.sleep(3600) #1Hr wait
@@ -230,7 +230,7 @@ while True:
         telegram_on = 1
         #telegram-------------------------------------------------                
         bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
-        bot.sendMessage(chat_id=chat_id, text="현재가 (+1.9%): {0:,.0f}".format(price))
+        bot.sendMessage(chat_id=chat_id, text="현재가 (+2.5%): {0:,.0f}".format(price))
         bot.sendMessage(chat_id=chat_id, text="익절코인수량 : {0:,.5f}".format(coin_balance))
         bot.sendMessage(chat_id=chat_id, text="=============================")
         #telegram-------------------------------------------------
