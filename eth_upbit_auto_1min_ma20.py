@@ -54,10 +54,10 @@ while True:
     call_KRW_4st = total_krw * (50.0/100)
     #====================================================================================================
     # 1st_price_value    
-    upbit_target_call_1st = upbit_target - (upbit_target * (0.30/100))    
-    upbit_target_call_2nd = upbit_target - (upbit_target * (0.47/100))
-    upbit_target_call_3rd = upbit_target - (upbit_target * (0.65/100))
-    upbit_target_call_4st = upbit_target - (upbit_target * (0.90/100))
+    upbit_target_call_1st = upbit_target - (upbit_target * (0.50/100))    
+    upbit_target_call_2nd = upbit_target - (upbit_target * (0.68/100))
+    upbit_target_call_3rd = upbit_target - (upbit_target * (0.85/100))
+    upbit_target_call_4st = upbit_target - (upbit_target * (1.5/100))
 
     Gap1st = abs(upbit_target - upbit_target_call_1st)
     Gap2nd = abs(upbit_target_call_1st - upbit_target_call_2nd)
@@ -65,17 +65,17 @@ while True:
     Gap4st = abs(upbit_target_call_3rd - upbit_target_call_4st)
     #====================================================================================================    
     # - sell value
-    upbit_target_down = krw_call_avg_price - (krw_call_avg_price * (2.5/100)) #손절설정
+    upbit_target_down = krw_call_avg_price - (krw_call_avg_price * (6.0/100)) #손절설정
     upbit_target_down_telegram = krw_call_avg_price - (krw_call_avg_price * (0.7/100)) #손절텔레그램알림
     #====================================================================================================
     # + sell value
-    upbit_target_plus_up = krw_call_avg_price + (krw_call_avg_price * (1.9/100))  #익절설정
+    upbit_target_plus_up = krw_call_avg_price + (krw_call_avg_price * (2.5/100))  #익절설정
     upbit_target_plus_up_telegram = krw_call_avg_price + (krw_call_avg_price * (0.7/100))  #익절텔레그램알림
     #====================================================================================================        
     # 1st_price_value 
-    if coin_balance == 0 or call_count == 1:
-        if price is not None and price < upbit_target and price < upbit_target_call_1st:
-            #upbit.buy_market_order(coin, call_KRW_1st)
+    if krw_balance >= total_krw and coin_balance == 0 or call_count == 1:
+        if price is not None and call_total_krw_ < total_krw and price < upbit_target and price < upbit_target_call_1st:
+            upbit.buy_market_order(coin, call_KRW_1st)
             time.sleep(0.5) #1sec wait
             call_1st = "1차매수 완료"
             call_count = 2
