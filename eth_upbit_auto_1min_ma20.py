@@ -56,7 +56,7 @@ while True:
     # 1st_price_value    
     upbit_target_call_1st = upbit_target - (upbit_target * (0.50/100))    
     upbit_target_call_2nd = upbit_target - (upbit_target * (0.68/100))
-    upbit_target_call_3rd = upbit_target - (upbit_target * (0.85/100))
+    upbit_target_call_3rd = upbit_target - (upbit_target * (1.0/100))
     upbit_target_call_4st = upbit_target - (upbit_target * (1.5/100))
 
     Gap1st = abs(upbit_target - upbit_target_call_1st)
@@ -103,7 +103,7 @@ while True:
     # 2nd_price_value 
     if price is not None and call_count == 2 and price < upbit_target and price < upbit_target_call_2nd:
         upbit.buy_market_order(coin, call_KRW_2nd)
-        time.sleep(0.5) #1sec wait        
+        time.sleep(0.5) #1sec wait
         call_2nd = "2차매수 완료"
         call_count = 3
         sell_count = 1
@@ -254,10 +254,10 @@ while True:
         print("▶ 현재가 : {0:,.0f}".format(price))
         print(f"---------------------------------------------------------")
         print("▶ call_count: {0:,.0f}".format(call_count))    
-        print("▶ call Target 1st : {0:,.0f}".format(upbit_target_call_1st), "▶ Gap 1st : {0:,.0f}".format(Gap1st), "▶ 매수예정금액 : {0:,.0f}".format(call_KRW_1st), "▶", call_1st)
-        print("▶ call Target 2nd : {0:,.0f}".format(upbit_target_call_2nd), "▶ Gap 2nd : {0:,.0f}".format(Gap2nd), "▶ 매수예정금액 : {0:,.0f}".format(call_KRW_2nd), "▶", call_2nd)
-        print("▶ call Target 3rd : {0:,.0f}".format(upbit_target_call_3rd), "▶ Gap 3rd : {0:,.0f}".format(Gap3rd), "▶ 매수예정금액 : {0:,.0f}".format(call_KRW_3rd), "▶", call_3rd)
-        print("▶ call Target 4st : {0:,.0f}".format(upbit_target_call_4st), "▶ Gap 3rd : {0:,.0f}".format(Gap4st), "▶ 매수예정금액 : {0:,.0f}".format(call_KRW_4st), "▶", call_4st)
+        print("▶ call Target 1st : {0:,.0f}".format(upbit_target_call_1st), "▶ Gap 1st : {0:,.0f}".format(Gap1st), "▶ 매수예정금액(2%) : {0:,.0f}".format(call_KRW_1st), "▶", call_1st)
+        print("▶ call Target 2nd : {0:,.0f}".format(upbit_target_call_2nd), "▶ Gap 2nd : {0:,.0f}".format(Gap2nd), "▶ 매수예정금액(10%) : {0:,.0f}".format(call_KRW_2nd), "▶", call_2nd)
+        print("▶ call Target 3rd : {0:,.0f}".format(upbit_target_call_3rd), "▶ Gap 3rd : {0:,.0f}".format(Gap3rd), "▶ 매수예정금액(38%) : {0:,.0f}".format(call_KRW_3rd), "▶", call_3rd)
+        print("▶ call Target 4st : {0:,.0f}".format(upbit_target_call_4st), "▶ Gap 3rd : {0:,.0f}".format(Gap4st), "▶ 매수예정금액(50%) : {0:,.0f}".format(call_KRW_4st), "▶", call_4st)
         print(f"---------------------------------------------------------")    
         print("▶ 손절 예정 단가 : {0:,.0f}".format(upbit_target_down))
         print(f"---------------------------------------------------------")    
