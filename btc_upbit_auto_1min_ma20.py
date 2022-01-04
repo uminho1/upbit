@@ -246,6 +246,18 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="익절할려면 수동 매도 바랍니다.")
         bot.sendMessage(chat_id=chat_id, text="=============================")
         #telegram-------------------------------------------------
+
+    # 평단가 도달시 텔레그램 알림
+    if call_total_krw_ >= 1 and price >= krw_call_avg_price and price < krw_call_avg_price + 100000:
+        price = round(pyupbit.get_current_price(coin), 0) #현재가
+        #telegram-------------------------------------------------                
+        bot.sendMessage(chat_id=chat_id, text=now.strftime('■ 거래시간: %y/%m/%d'))
+        bot.sendMessage(chat_id=chat_id, text="평단가 도달 알림: {0:,.0f}".format(price))
+        bot.sendMessage(chat_id=chat_id, text="평단가 : {0:,.0f}".format(krw_call_avg_price))        
+        bot.sendMessage(chat_id=chat_id, text="매수금액(누적) : {0:,.0f}".format(call_total_krw_))
+        bot.sendMessage(chat_id=chat_id, text="평단가 도달입니다..")
+        bot.sendMessage(chat_id=chat_id, text="=============================")
+        #telegram-------------------------------------------------
         
     if log == 1:    
         print(f"=========================================================")
