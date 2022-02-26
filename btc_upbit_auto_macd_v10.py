@@ -27,7 +27,7 @@ sell_no = 1
 #========================================================================
 #실시간 매매
 while True:
-    url = "https://api.upbit.com/v1/candles/minutes/30"  
+    url = "https://api.upbit.com/v1/candles/minutes/5"  
     querystring = {"market":coin,"count":"150"}    
     response = requests.request("GET", url, params=querystring)    
     data = response.json()    
@@ -60,7 +60,7 @@ while True:
     print(time_min)
     print('------------------------------------------')
 
-    if bay_no == 1 and macd[0] < -350000 and macd_gap < 10000:
+    if bay_no == 1 and macd[0] < -100000 and macd_gap < 10000:
         upbit.buy_market_order(coin, Call_KRW_1st)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -74,7 +74,7 @@ while True:
         bay_no = 2
         sell_no = 1
 
-    if bay_no == 2 and macd[0] < -350000 and macd_gap < 3000:
+    if bay_no == 2 and macd[0] < -150000 and macd_gap < 3000:
         upbit.buy_market_order(coin, Call_KRW_2nd)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -88,7 +88,7 @@ while True:
         bay_no = "end"
         sell_no = 1
 
-    elif sell_no == 1 and macd[0] > 400000 and macd_gap < 15000:
+    elif sell_no == 1 and macd[0] > 130000 and macd_gap < 15000:
         upbit.sell_market_order(coin, coin_jango)
         
         bot.sendMessage(chat_id=chat_id, text='■ 매도알림:')
@@ -109,6 +109,6 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='매매신호값: {0:,.0f}'.format(macd_gap))
         bot.sendMessage(chat_id=chat_id, text='MACD값이 -350000이하 and 신호값이 10000보다 작을때 1차매수')
         bot.sendMessage(chat_id=chat_id, text='MACD값이 -350000이하 and 신호값이 3000보다 작을때 2차매수')
-        bot.sendMessage(chat_id=chat_id, text='MACD값이 +400000이상 and 신호값이 15000보다 작을때 2차매수')
+        bot.sendMessage(chat_id=chat_id, text='MACD값이 +400000이상 and 신호값이 15000보다 작을때 전량매도')
     
     time.sleep(10)
