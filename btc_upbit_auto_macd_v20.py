@@ -67,8 +67,8 @@ while True:
     stochrsi_K = stochrsi.rolling(smoothK).mean()
     stochrsi_D = stochrsi_K.rolling(smoothD).mean()  
     
-    stochrsiRSI_K = '{0:,.3f}'.format(stochrsi_K.iloc[-1]*100)
-    stochrsiRSI_D = '{0:,.3f}'.format(stochrsi_D.iloc[-1]*100)
+    stochrsiRSI_K = int(stochrsi_K.iloc[-1]*100)
+    stochrsiRSI_D = int(stochrsi_D.iloc[-1]*100)
     #------------------------------------------------------------------------
     coin_price = pyupbit.get_current_price(coin) #코인현재가
     jango = upbit.get_balance("KRW") #계좌잔고
@@ -90,7 +90,7 @@ while True:
     print('현재분초:', time_min)
     print('------------------------------------------')
 
-    if bay_no == 1 and stochrsiRSI_K < "20" and macd[0] < -100000:
+    if bay_no == 1 and stochrsiRSI_K < 20 and macd[0] < -100000:
         upbit.buy_market_order(coin, Call_KRW_1st)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -105,7 +105,7 @@ while True:
         bay_no = 2
         sell_no = 1
 
-    if bay_no == 2 and stochrsiRSI_K < "20" and macd[0] < -150000:
+    if bay_no == 2 and stochrsiRSI_K < 20 and macd[0] < -150000:
         upbit.buy_market_order(coin, Call_KRW_2nd)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -120,13 +120,13 @@ while True:
         bay_no = "end"
         sell_no = 1
 
-    elif sell_no == 1 and stochrsiRSI_K > "80" and macd[0] > 130000 and macd_gap < 10000:
+    elif sell_no == 1 and stochrsiRSI_K > 80 and macd[0] > 130000 and macd_gap < 10000:
         upbit.sell_market_order(coin, coin_jango)
         
         bot.sendMessage(chat_id=chat_id, text='■ 매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
-        bot.sendMessage(chat_id=chat_id, text="stochRSI_K : {0:,.2f}".format(stochrsi_K.iloc[-1]*100)))
+        bot.sendMessage(chat_id=chat_id, text="stochRSI_K : {0:,.2f}".format(stochrsi_K.iloc[-1]*100))
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
         bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))
         sell_no = "end"
