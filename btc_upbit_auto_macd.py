@@ -60,7 +60,7 @@ while True:
     print(time_min)
     print('------------------------------------------')
 
-    if bay_no == 1 and macd[0] > -350000 and macd_gap < 10000:
+    if bay_no == 1 and macd[0] < -350000 and macd_gap < 10000:
         upbit.buy_market_order(coin, Call_KRW_1st)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -74,7 +74,7 @@ while True:
         bay_no = 2
         sell_no = 1
 
-    if bay_no == 2 and macd[0] > -350000 and macd_gap < 3000:
+    if bay_no == 2 and macd[0] < -350000 and macd_gap < 3000:
         upbit.buy_market_order(coin, Call_KRW_2nd)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
