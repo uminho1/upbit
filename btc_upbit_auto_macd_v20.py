@@ -86,13 +86,13 @@ while True:
     print('stoch_rsi_D: ', '{0:,.2f}'.format(stochrsi_D.iloc[-1]*100))
     print('------------------------------------------')
     print('코인현재가: {0:,.0f}'.format(coin_price))
-    print('보유자산:', '{0:,.2f}'.format(jango))
+    print('보유자산:', '{0:,.0f}'.format(jango))
     print('현재분초:', time_min)
     print('------------------------------------------')
-
-    if bay_no == 1 and stochrsiRSI_K < 30 and macd[0] < -80000:
+    
+    if coin_jango == 0 and int(stochrsiRSI_K) < 30 and int(macd[0]) < -80000:
         upbit.buy_market_order(coin, Call_KRW_1st)
-        coin_jango = upbit.get_balance(coin) #코인매수수량    
+        coin_jango = upbit.get_balance(coin) #코인매수수량
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
         coin_total_krw = coin_avg_price * coin_jango #매수한금액
         
@@ -105,7 +105,7 @@ while True:
         bay_no = 2
         sell_no = 1
 
-    if bay_no == 2 and stochrsiRSI_K < 25 and macd[0] < -100000:
+    if bay_no == 2 and int(stochrsiRSI_K) < 25 and int(macd[0]) < -100000:
         upbit.buy_market_order(coin, Call_KRW_2nd)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -119,8 +119,8 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
         bay_no = "end"
         sell_no = 1
-
-    elif sell_no >= 1 and stochrsiRSI_K > 80 and macd[0] > 115000 and macd_gap < 25000:
+    
+    elif sell_no > 1 and coin_total_krw > 1 and int(stochrsiRSI_K) > 80 and int(macd[0]) > 115000 and int(macd_gap) < 25000:
         upbit.sell_market_order(coin, coin_jango)
         
         bot.sendMessage(chat_id=chat_id, text='■ 매도알림:')
