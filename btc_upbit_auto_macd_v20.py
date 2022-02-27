@@ -120,7 +120,7 @@ while True:
         bay_no = "end"
         sell_no = 1
 
-    elif sell_no == 1 and stochrsiRSI_K > 80 and macd[0] > 115000 and macd_gap < 25000:
+    elif sell_no >= 1 and stochrsiRSI_K > 80 and macd[0] > 115000 and macd_gap < 25000:
         upbit.sell_market_order(coin, coin_jango)
         
         bot.sendMessage(chat_id=chat_id, text='■ 매도알림:')
