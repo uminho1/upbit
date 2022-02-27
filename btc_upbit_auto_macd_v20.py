@@ -19,7 +19,7 @@ chat_id ="849745003"
 coin = "KRW-BTC"
 
 #1차매수에 사용할 금액
-Total_KRW = 30000
+Total_KRW = 100000
 Call_KRW_1st = Total_KRW * (35.0/100)
 Call_KRW_2nd = Total_KRW * (65.0/100)
 
