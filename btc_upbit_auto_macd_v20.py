@@ -45,7 +45,7 @@ while True:
 
     after_close = inho_df['close'].iloc[-1]      #현재봉가격    
     before_close = inho_df['close'].iloc[-2]     #직전봉종가
-    before_close_new = before_close - (before_close * 0.05)
+    before_close_new = before_close - (before_close * 0.015)
     #------------------------------------------------------------------------
     #MACD
     exp1 = df.ewm(span=12, adjust=False).mean()
@@ -96,8 +96,9 @@ while True:
     print('stoch_rsi_D: ', '{0:,.2f}'.format(stochrsi_D.iloc[-1]*100))
     print('------------------------------------------')
     print('직전봉거래량 * 3: ', '{0:,.0f}'.format(before_volume_new))
-    print('현재봉거래량: ', '{0:,.0f}'.format(after_volume))    
-    print('직전봉종가 * 0.03: ', '{0:,.0f}'.format(before_close_new))
+    print('현재봉거래량: ', '{0:,.0f}'.format(after_volume))
+    print('직전봉종가: ', '{0:,.0f}'.format(before_close))
+    print('직전봉종가 * 0.15%: ', '{0:,.0f}'.format(before_close_new))
     print('현재봉가격: ', '{0:,.0f}'.format(after_close))
     print('------------------------------------------')
     print('코인현재가: {0:,.0f}'.format(coin_price))
