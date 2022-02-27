@@ -35,7 +35,17 @@ while True:
     df = pd.DataFrame(data)    
     series=df['trade_price'].iloc[::-1]
     df=df.iloc[::-1]
-    df=df['trade_price']    
+    df=df['trade_price']
+    #------------------------------------------------------------------------
+    #직전봉 거래량 구하기
+    inho_df = pyupbit.get_ohlcv(ticker=coin, interval='minute5', count=10)
+    after_volume = inho_df['volume'].iloc[-1]      #현재봉거래량    
+    before_volume = inho_df['volume'].iloc[-2]     #직전봉거래량
+    before_volume_new = before_volume * 3
+
+    after_close = inho_df['close'].iloc[-1]      #현재봉가격    
+    before_close = inho_df['close'].iloc[-2]     #직전봉종가
+    before_close_new = before_close - (before_close * 0.05)
     #------------------------------------------------------------------------
     #MACD
     exp1 = df.ewm(span=12, adjust=False).mean()
@@ -85,6 +95,11 @@ while True:
     print('stoch_rsi_K: ', '{0:,.2f}'.format(stochrsi_K.iloc[-1]*100))
     print('stoch_rsi_D: ', '{0:,.2f}'.format(stochrsi_D.iloc[-1]*100))
     print('------------------------------------------')
+    print('직전봉거래량 * 3: ', '{0:,.0f}'.format(before_volume_new))
+    print('현재봉거래량: ', '{0:,.0f}'.format(after_volume))    
+    print('직전봉종가 * 0.03: ', '{0:,.0f}'.format(before_close_new))
+    print('현재봉가격: ', '{0:,.0f}'.format(after_close))
+    print('------------------------------------------')
     print('코인현재가: {0:,.0f}'.format(coin_price))
     print('보유자산:', '{0:,.0f}'.format(jango))
     print('현재분초:', time_min)
@@ -120,17 +135,29 @@ while True:
         bay_no = "end"
         sell_no = 1
     
-    elif sell_no > 1 and coin_total_krw > 1 and int(stochrsiRSI_K) > 80 and int(macd[0]) > 115000 and int(macd_gap) < 25000:
-        upbit.sell_market_order(coin, coin_jango)
-        
+    elif sell_no > 1 and coin_total_krw > 1 and int(stochrsiRSI_K) > 80 and int(macd[0]) > 115000 and int(macd_gap) < 20000:
         bot.sendMessage(chat_id=chat_id, text='■ 매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
         bot.sendMessage(chat_id=chat_id, text="stochRSI_K : {0:,.2f}".format(stochrsi_K.iloc[-1]*100))
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
         bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))
+        upbit.sell_market_order(coin, coin_jango)
         sell_no = "end"
         bay_no = 1
+
+    elif sell_no > 1 and coin_total_krw > 1 and after_close < before_close_new and after_volume > before_volume_new:
+        bot.sendMessage(chat_id=chat_id, text='■급락매도알림:')
+        bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
+        bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
+        bot.sendMessage(chat_id=chat_id, text="stochRSI_K : {0:,.2f}".format(stochrsi_K.iloc[-1]*100))
+        bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
+        bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))
+        bot.sendMessage(chat_id=chat_id, text='직전봉거래량: {0:,.0f}'.format(before_volume))
+        bot.sendMessage(chat_id=chat_id, text='현재봉거래량: {0:,.0f}'.format(after_volume))
+        bot.sendMessage(chat_id=chat_id, text='직전봉종가: {0:,.0f}'.format(before_close))
+        bot.sendMessage(chat_id=chat_id, text='현재봉종가: {0:,.0f}'.format(after_close))
+        upbit.sell_market_order(coin, coin_jango)
 
     else:
         print('매매대기중')        
@@ -144,6 +171,6 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="stochRSI_K : {0:,.2f}".format(stochrsi_K.iloc[-1]*100))
         bot.sendMessage(chat_id=chat_id, text='MACD값이 -80000이하 and stochRSI_K값이 30이하이면 1차매수')
         bot.sendMessage(chat_id=chat_id, text='MACD값이 -100000이하 and stochRSI_K값이 25이하이면 2차매수')
-        bot.sendMessage(chat_id=chat_id, text='MACD값이 +115000이상 and MACD_Gap이 25000이하 and stochRSI_K값이 80이상이면 전량매도')
+        bot.sendMessage(chat_id=chat_id, text='MACD값이 +115000이상 and MACD_Gap이 20000이하 and stochRSI_K값이 80이상이면 전량매도')
     
     time.sleep(10)
