@@ -144,6 +144,6 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="stochRSI_K : {0:,.2f}".format(stochrsi_K.iloc[-1]*100))
         bot.sendMessage(chat_id=chat_id, text='MACD값이 -80000이하 and stochRSI_K값이 30이하이면 1차매수')
         bot.sendMessage(chat_id=chat_id, text='MACD값이 -100000이하 and stochRSI_K값이 25이하이면 2차매수')
-        bot.sendMessage(chat_id=chat_id, text='MACD값이 +130000이상 and MACD_Gap이 10000이하 and stochRSI_K값이 80이상이면 전량매도')
+        bot.sendMessage(chat_id=chat_id, text='MACD값이 +120000이상 and MACD_Gap이 10000이하 and stochRSI_K값이 80이상이면 전량매도')
     
     time.sleep(10)
