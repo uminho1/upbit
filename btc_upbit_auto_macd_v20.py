@@ -123,7 +123,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="직전봉거래량 * 3: {0:,.0f}".format(before_volume_new))
         bot.sendMessage(chat_id=chat_id, text="현재봉거래량: {0:,.0f}".format(after_volume))
         bot.sendMessage(chat_id=chat_id, text="직전봉종가: {0:,.0f}".format(before_close))
-        bot.sendMessage(chat_id=chat_id, text="직전봉종가 * 0.12%: {0:,.0f}".format(before_close_new))
+        bot.sendMessage(chat_id=chat_id, text="직전봉종가 * 0.11%: {0:,.0f}".format(before_close_new))
         bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
         bay_no = 2
         sell_no = 1
@@ -144,7 +144,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="직전봉거래량 * 3: {0:,.0f}".format(before_volume_new))
         bot.sendMessage(chat_id=chat_id, text="현재봉거래량: {0:,.0f}".format(after_volume))
         bot.sendMessage(chat_id=chat_id, text="직전봉종가: {0:,.0f}".format(before_close))
-        bot.sendMessage(chat_id=chat_id, text="직전봉종가 * 0.12%: {0:,.0f}".format(before_close_new))
+        bot.sendMessage(chat_id=chat_id, text="직전봉종가 * 0.11%: {0:,.0f}".format(before_close_new))
         bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
         bay_no = "end"
         sell_no = 1
@@ -160,7 +160,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="직전봉거래량 * 3: {0:,.0f}".format(before_volume_new))
         bot.sendMessage(chat_id=chat_id, text="현재봉거래량: {0:,.0f}".format(after_volume))
         bot.sendMessage(chat_id=chat_id, text="직전봉종가: {0:,.0f}".format(before_close))
-        bot.sendMessage(chat_id=chat_id, text="직전봉종가 * 0.12%: {0:,.0f}".format(before_close_new))
+        bot.sendMessage(chat_id=chat_id, text="직전봉종가 * 0.11%: {0:,.0f}".format(before_close_new))
         bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
         upbit.sell_market_order(coin, coin_jango)
         sell_no = "end"
