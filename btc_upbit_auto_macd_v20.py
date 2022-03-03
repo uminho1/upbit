@@ -89,8 +89,7 @@ while True:
     time_hore = time.strftime('%H%M', time.localtime(time.time()))
 
     print('실시간MACD: ', '{0:,.0f}'.format(macd[0]))
-    print('실시간Signal: ', '{0:,.0f}'.format(signal[0]))
-    print('')
+    print('실시간Signal: ', '{0:,.0f}'.format(signal[0]))    
     print('매매신호값: ', '{0:,.0f}'.format(macd_gap))
     print('------------------------------------------')
     print('stoch_rsi_K: ', '{0:,.2f}'.format(stochrsi_K.iloc[-1]*100))
@@ -149,7 +148,7 @@ while True:
         bay_no = "end"
         sell_no = 1
     
-    elif sell_no > 1 and coin_total_krw > 1 and int(stochrsiRSI_K) > 75 and int(macd[0]) > 100000 and int(macd_gap) < 20000:
+    elif sell_no > 1 and coin_total_krw > 1 and int(stochrsiRSI_K) > 75 and int(macd[0]) > 100000:
         bot.sendMessage(chat_id=chat_id, text='■ 매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
@@ -192,8 +191,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='■ 매시간 알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
-        bot.sendMessage(chat_id=chat_id, text="stochRSI_K : {0:,.2f}".format(stochrsi_K.iloc[-1]*100))
-        bot.sendMessage(chat_id=chat_id, text="stochRSI_K : {0:,.2f}".format(stochrsi_K.iloc[-1]*100))
+        bot.sendMessage(chat_id=chat_id, text="stochRSI_K : {0:,.2f}".format(stochrsi_K.iloc[-1]*100))        
 
     if time_hore == "0910":
         bot.sendMessage(chat_id=chat_id, text='■ 매매조건알림:')
