@@ -19,7 +19,7 @@ chat_id ="849745003"
 coin = "KRW-BTC"
 
 #매수에 사용할 금액
-Total_KRW = 100000
+Total_KRW = 200000
 Call_KRW_1st = Total_KRW * (10.0/100)
 Call_KRW_2nd = Total_KRW * (35.0/100)
 Call_KRW_3rd = Total_KRW * (55.0/100)
@@ -113,7 +113,7 @@ while True:
     print('현재분초:', time_min)
     print('------------------------------------------')
     
-    if coin_jango == 0 and int(stochrsiRSI_K) < 30 and int(macd[0]) < -100000:
+    if coin_jango == 0 and jango > 6000 and int(stochrsiRSI_K) < 30 and int(macd[0]) < -100000:
         upbit.buy_market_order(coin, Call_KRW_1st)
         coin_jango = upbit.get_balance(coin) #코인매수수량
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -176,7 +176,7 @@ while True:
         bay_no = "end"
         sell_no = 1    
     
-    elif sell_no == 1 and coin_total_krw > 1 and int(stochrsiRSI_K) > 75 and int(macd[0]) > 100000:
+    elif sell_no == 1 and coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 75 and int(macd[0]) > 100000:
         bot.sendMessage(chat_id=chat_id, text='■ 1차매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
@@ -187,7 +187,7 @@ while True:
         upbit.sell_market_order(coin, Sell_1st)
         sell_no = 2
 
-    elif sell_no == 2 and coin_total_krw > 1 and int(stochrsiRSI_K) > 85 and int(macd[0]) > 150000:
+    elif sell_no == 2 and coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 85 and int(macd[0]) > 150000:
         bot.sendMessage(chat_id=chat_id, text='■ 2차매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
