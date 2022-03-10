@@ -236,7 +236,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='MACD값이 -250,000이하 and MACD_Gap값이 -8,000 ~ 8,000이면 1차매수')
         bot.sendMessage(chat_id=chat_id, text='MACD값이 -300,000이하 and MACD_Gap값이 -8,000 ~ 8,000이면 2차매수')
         bot.sendMessage(chat_id=chat_id, text='MACD값이 -350,000이하 and MACD_Gap값이 -8,000 ~ 8,000이면 3차매수')
-        bot.sendMessage(chat_id=chat_id, text='MACD값이 +150,000이상 and MACD_Gap값이 50,000이상이면 1차매도')
-        bot.sendMessage(chat_id=chat_id, text='MACD값이 +180,000이상 and MACD_Gap값이 80,000이상이면 2차매도')
+        bot.sendMessage(chat_id=chat_id, text='MACD값이 +200,000이상 and MACD_Gap값이 50,000이상이면 1차매도')
+        bot.sendMessage(chat_id=chat_id, text='MACD값이 +250,000이상 and MACD_Gap값이 80,000이상이면 2차매도')
     
     time.sleep(10)
