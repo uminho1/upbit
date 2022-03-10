@@ -55,7 +55,7 @@ while True:
     macd = exp1-exp2
     signal = macd.ewm(span=9, adjust=False).mean()
 
-    macd_gap = abs(macd[0]) - abs(signal[0])    
+    macd_gap = macd[0] - signal[0]
     #------------------------------------------------------------------------
     #stochrsiRSI
     period=14
@@ -90,8 +90,8 @@ while True:
     time_min = time.strftime('%M%S', time.localtime(time.time()))
     time_hore = time.strftime('%H%M%S', time.localtime(time.time()))
     #매도에 사용할 금액    
-    Sell_1st = coin_jango * (30.0/100)
-    Sell_2nd = coin_jango * (70.0/100)
+    Sell_1st = coin_jango * (40.0/100)
+    Sell_2nd = coin_jango * (60.0/100)
     #------------------------------------------------------------------------
 
     print('실시간MACD: ', '{0:,.0f}'.format(macd[0]))
@@ -113,7 +113,7 @@ while True:
     print('현재분초:', time_min)
     print('------------------------------------------')
     
-    if coin_jango == 0 and jango > 6000 and int(stochrsiRSI_K) < 30 and int(macd[0]) < -100000:
+    if coin_jango == 0 and jango > 6000 and int(stochrsiRSI_K) > 0 and int(macd[0]) < -250000 and -8000 < int(macd_gap) > 8000:
         upbit.buy_market_order(coin, Call_KRW_1st)
         coin_jango = upbit.get_balance(coin) #코인매수수량
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -134,7 +134,7 @@ while True:
         bay_no = 2
         sell_no = 1
 
-    if bay_no == 2 and int(stochrsiRSI_K) < 15 and int(macd[0]) < -150000:
+    if bay_no == 2 and int(stochrsiRSI_K) > 0 and int(macd[0]) < -300000 and -8000 < int(macd_gap) > 8000:
         upbit.buy_market_order(coin, Call_KRW_2nd)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -155,7 +155,7 @@ while True:
         bay_no = 3
         sell_no = 1
 
-    if bay_no == 3 and int(stochrsiRSI_K) < 5 and int(macd[0]) < -200000:
+    if bay_no == 3 and int(stochrsiRSI_K) > 0 and int(macd[0]) < -350000 and -8000 < int(macd_gap) > 8000:
         upbit.buy_market_order(coin, Call_KRW_3rd)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -176,7 +176,7 @@ while True:
         bay_no = "end"
         sell_no = 1    
     
-    elif sell_no == 1 and coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 75 and int(macd[0]) > 100000:
+    elif sell_no == 1 and coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 0 and int(macd[0]) > 150000 and int(macd_gap) > 50000:
         bot.sendMessage(chat_id=chat_id, text='■ 1차매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
@@ -187,7 +187,7 @@ while True:
         upbit.sell_market_order(coin, Sell_1st)
         sell_no = 2
 
-    elif sell_no == 2 and coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 85 and int(macd[0]) > 150000:
+    elif sell_no == 2 and coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 0 and int(macd[0]) > 180000 and int(macd_gap) > 80000:
         bot.sendMessage(chat_id=chat_id, text='■ 2차매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
@@ -198,7 +198,7 @@ while True:
         upbit.sell_market_order(coin, Sell_2nd)
         sell_no = "end"
 
-    elif sell_no > 1 and coin_total_krw > 1 and coin_price <= before_close_new and after_volume > before_volume_new:
+    elif coin_total_krw > 1 and coin_price < before_close_new and after_volume > before_volume_new:
         bot.sendMessage(chat_id=chat_id, text='■급락매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
@@ -213,7 +213,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
         bot.sendMessage(chat_id=chat_id, text="전량 매도후 30분 매매대기합니다.")
         upbit.sell_market_order(coin, coin_jango)
-        time.sleep(1800) #30min wait
+        time.sleep(18000) #5시간 wait
 
     else:
         print('■ 매매대기중')        
@@ -233,10 +233,10 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
         bot.sendMessage(chat_id=chat_id, text="stochRSI_K : {0:,.2f}".format(stochrsi_K.iloc[-1]*100))
         bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))
-        bot.sendMessage(chat_id=chat_id, text='MACD값이 -100,000이하 and stochRSI_K값이 30이하이면 1차매수')
-        bot.sendMessage(chat_id=chat_id, text='MACD값이 -150,000이하 and stochRSI_K값이 15이하이면 2차매수')
-        bot.sendMessage(chat_id=chat_id, text='MACD값이 -200,000이하 and stochRSI_K값이 5이하이면 3차매수')
-        bot.sendMessage(chat_id=chat_id, text='MACD값이 +100,000이상 and stochRSI_K값이 75이상이면 1차매도')
-        bot.sendMessage(chat_id=chat_id, text='MACD값이 +150,000이상 and stochRSI_K값이 85이상이면 2차매도')
+        bot.sendMessage(chat_id=chat_id, text='MACD값이 -250,000이하 and MACD_Gap값이 -8,000 ~ 8,000이면 1차매수')
+        bot.sendMessage(chat_id=chat_id, text='MACD값이 -300,000이하 and MACD_Gap값이 -8,000 ~ 8,000이면 2차매수')
+        bot.sendMessage(chat_id=chat_id, text='MACD값이 -350,000이하 and MACD_Gap값이 -8,000 ~ 8,000이면 3차매수')
+        bot.sendMessage(chat_id=chat_id, text='MACD값이 +150,000이상 and MACD_Gap값이 50,000이상이면 1차매도')
+        bot.sendMessage(chat_id=chat_id, text='MACD값이 +180,000이상 and MACD_Gap값이 80,000이상이면 2차매도')
     
     time.sleep(10)
