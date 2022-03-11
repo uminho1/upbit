@@ -2,7 +2,7 @@
 rm -rf 폴더명
 
 ▶깃에서 소스가져오기
-~~  git clone https://github.com/uminho1/upbit.git
+# git clone https://github.com/uminho1/upbit.git #
 
 ▶한국 기준으로 서버 시간 설정: 
 sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
