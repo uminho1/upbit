@@ -90,8 +90,9 @@ while True:
     time_min = time.strftime('%M%S', time.localtime(time.time()))
     time_hore = time.strftime('%H%M%S', time.localtime(time.time()))
     #매도에 사용할 금액    
-    Sell_1st = coin_jango * (40.0/100)
-    Sell_2nd = coin_jango * (100.0/100)
+    Sell_1st = coin_jango * (40.0/100)   #잔고에 40%매도
+    Sell_2nd = coin_jango * (60.0/100)   #1차매도후 잔고에 60%매도
+    Sell_3rd = coin_jango * (100.0/100)  #2차매도후 잔고에 100%매도
     #------------------------------------------------------------------------
 
     print('실시간MACD: ', '{0:,.0f}'.format(macd[0]))
@@ -196,7 +197,18 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))
         bot.sendMessage(chat_id=chat_id, text="--------------")        
         upbit.sell_market_order(coin, Sell_2nd)
-        sell_no = "end"
+        sell_no = 3
+
+    elif sell_no == 3 and coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 0 and int(macd[0]) > 300000 and int(macd_gap) > 80000:
+        bot.sendMessage(chat_id=chat_id, text='■ 3차매도알림:')
+        bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
+        bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
+        bot.sendMessage(chat_id=chat_id, text="stochRSI_K : {0:,.2f}".format(stochrsi_K.iloc[-1]*100))
+        bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
+        bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))
+        bot.sendMessage(chat_id=chat_id, text="--------------")        
+        upbit.sell_market_order(coin, Sell_3rd)
+        sell_no = "end"    
 
     elif coin_total_krw > 1 and coin_price < before_close_new and after_volume > before_volume_new:
         bot.sendMessage(chat_id=chat_id, text='■급락매도알림:')
@@ -211,7 +223,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="직전봉종가: {0:,.0f}".format(before_close))
         bot.sendMessage(chat_id=chat_id, text="직전봉종가 * 0.07%: {0:,.0f}".format(before_close_new))
         bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
-        bot.sendMessage(chat_id=chat_id, text="전량 매도후 30분 매매대기합니다.")
+        bot.sendMessage(chat_id=chat_id, text="전량 매도후 5시간 매매대기합니다.")
         upbit.sell_market_order(coin, coin_jango)
         time.sleep(18000) #5시간 wait
 
