@@ -135,7 +135,7 @@ while True:
         bay_no = 2
         sell_no = 1
 
-    if bay_no == 2 and int(stochrsiRSI_K) > 0 and int(macd[0]) < -300000 and -8000 < int(macd_gap) > 8000:
+    if int(stochrsiRSI_K) > 0 and int(macd[0]) < -300000 and -8000 < int(macd_gap) > 8000:
         upbit.buy_market_order(coin, Call_KRW_2nd)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -156,7 +156,7 @@ while True:
         bay_no = 3
         sell_no = 1
 
-    if bay_no == 3 and int(stochrsiRSI_K) > 0 and int(macd[0]) < -350000 and -8000 < int(macd_gap) > 8000:
+    if int(stochrsiRSI_K) > 0 and int(macd[0]) < -350000 and -8000 < int(macd_gap) > 8000:
         upbit.buy_market_order(coin, Call_KRW_3rd)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -177,7 +177,7 @@ while True:
         bay_no = "end"
         sell_no = 1    
     
-    elif sell_no == 1 and coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 0 and int(macd[0]) > 200000 and int(macd_gap) > 50000:
+    elif coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 0 and int(macd[0]) > 200000 and int(macd_gap) > 50000:
         bot.sendMessage(chat_id=chat_id, text='■ 1차매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
@@ -188,7 +188,7 @@ while True:
         upbit.sell_market_order(coin, Sell_1st)
         sell_no = 2
 
-    elif sell_no == 2 and coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 0 and int(macd[0]) > 250000 and int(macd_gap) > 80000:
+    elif coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 0 and int(macd[0]) > 250000 and int(macd_gap) > 80000:
         bot.sendMessage(chat_id=chat_id, text='■ 2차매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
@@ -199,7 +199,7 @@ while True:
         upbit.sell_market_order(coin, Sell_2nd)
         sell_no = 3
 
-    elif sell_no == 3 and coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 0 and int(macd[0]) > 300000 and int(macd_gap) > 80000:
+    elif coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 0 and int(macd[0]) > 300000 and int(macd_gap) > 100000:
         bot.sendMessage(chat_id=chat_id, text='■ 3차매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
@@ -250,5 +250,6 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='MACD값이 -350,000이하 and MACD_Gap값이 -8,000 ~ 8,000이면 3차매수')
         bot.sendMessage(chat_id=chat_id, text='MACD값이 +200,000이상 and MACD_Gap값이 50,000이상이면 1차매도')
         bot.sendMessage(chat_id=chat_id, text='MACD값이 +250,000이상 and MACD_Gap값이 80,000이상이면 2차매도')
+        bot.sendMessage(chat_id=chat_id, text='MACD값이 +300,000이상 and MACD_Gap값이 100,000이상이면 3차매도')
     
     time.sleep(10)
