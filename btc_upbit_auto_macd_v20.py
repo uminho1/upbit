@@ -91,7 +91,7 @@ while True:
     time_hore = time.strftime('%H%M%S', time.localtime(time.time()))
     #매도에 사용할 금액    
     Sell_1st = coin_jango * (40.0/100)
-    Sell_2nd = coin_jango * (60.0/100)
+    Sell_2nd = coin_jango * (100.0/100)
     #------------------------------------------------------------------------
 
     print('실시간MACD: ', '{0:,.0f}'.format(macd[0]))
