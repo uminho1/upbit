@@ -46,8 +46,8 @@ while True:
 
     after_close = inho_df['close'].iloc[-1]      #현재봉가격    
     before_close = inho_df['close'].iloc[-2]     #직전봉종가
-    before_close_new = before_close - (before_close * 0.008)  #급락신호
-    before_close_new_temp = before_close * 0.008  #급락신호
+    before_close_new = before_close - (before_close * 0.007)  #급락신호
+    before_close_new_temp = before_close * 0.007  #급락신호
     #------------------------------------------------------------------------
     #MACD
     exp1 = df.ewm(span=12, adjust=False).mean()
