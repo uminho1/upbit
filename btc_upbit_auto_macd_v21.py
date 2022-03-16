@@ -212,7 +212,7 @@ while True:
         bay_no = "end"
         sell_no = 1    
     
-    elif sell_no == 1 and coin_price > coin_avg_price and coin_total_krw > 1 and int(stochrsiRSI_K) > 0 and int(macd[0]) > macd_sell_1st and int(macd_gap) > macd_sell_gap_1st:
+    elif sell_no == 1 or coin_total_krw > 1 and coin_price > coin_avg_price and int(stochrsiRSI_K) > 0 and int(macd[0]) > macd_sell_1st and int(macd_gap) > macd_sell_gap_1st:
         bot.sendMessage(chat_id=chat_id, text='■ 1차매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
