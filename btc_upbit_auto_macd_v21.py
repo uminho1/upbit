@@ -277,12 +277,4 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))
 
-    #if time_hore > "091000" and time_hore < "091015":
-    #    bot.sendMessage(chat_id=chat_id, text='■ 매매조건알림:')
-    #    bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
-    #    bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
-    #    bot.sendMessage(chat_id=chat_id, text="12시간 평균가격: {0:,.0f}".format(price_12hr_average))
-    #    bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
-    #    bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))
-    
     time.sleep(10)
