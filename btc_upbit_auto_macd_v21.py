@@ -208,9 +208,9 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="직전봉종가 * 0.07%: {0:,.0f}".format(before_close_new))
         bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
         bay_no = "end"
-        sell_no = 1    
+        sell_no = 1
     
-    elif coin_total_krw > 1 and coin_price > coin_avg_price and int(macd[0]) > macd_sell_1st and int(macd_gap) > macd_sell_gap_1st:
+    elif coin_total_krw > (Total_KRW - Sell_1st) and coin_price > coin_avg_price and int(macd[0]) > macd_sell_1st and int(macd_gap) > macd_sell_gap_1st:
         bot.sendMessage(chat_id=chat_id, text='■ 1차매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
