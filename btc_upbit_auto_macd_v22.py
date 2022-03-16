@@ -24,6 +24,7 @@ Call_KRW_1st = Total_KRW * (10.0/100)       #1차 매수할금액
 Call_KRW_2nd = Total_KRW * (35.0/100)       #2차 매수할금액    
 Call_KRW_3rd = Total_KRW * (55.0/100)       #3차 매수할금액
 jango_update = "off"
+sell_no = "off"
 #========================================================================
 #실시간 매매
 while True:
