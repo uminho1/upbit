@@ -149,7 +149,7 @@ while True:
     print('현재분초:', time_min)
     print('------------------------------------------')
     
-    if coin_jango == 0 and jango > 6000 and int(stochrsiRSI_K) > 0 and int(macd[0]) < macd_bay_1st and -8000 < int(macd_gap) > 8000:
+    if jango > 6000 and int(stochrsiRSI_K) > 0 and int(macd[0]) < macd_bay_1st and -8000 < int(macd_gap) > 8000:
         upbit.buy_market_order(coin, Call_KRW_1st)
         coin_jango = upbit.get_balance(coin) #코인매수수량
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
