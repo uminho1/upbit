@@ -54,9 +54,9 @@ while True:
     price_12hr_average_gap = after_close - price_12hr_average
 
     if abs(price_12hr_average_gap) < 750000:     #이전 12시간동안 변동성이 현재가격에서 상하 750,000보다 작은경우
-        macd_bay_1st = 90000
-        macd_bay_2nd = 140000
-        macd_bay_3rd = 180000
+        macd_bay_1st = -90000
+        macd_bay_2nd = -140000
+        macd_bay_3rd = -180000
         #--------------------------------
         macd_sell_1st = 100000
         macd_sell_2nd = 130000
@@ -67,9 +67,9 @@ while True:
         macd_sell_gap_3rd = 50000
 
     elif abs(price_12hr_average_gap) > 1300000:  #이전 12시간동안 변동성이 현재가격에서 상하 1,200,000보다 큰경우
-        macd_bay_1st = 200000
-        macd_bay_2nd = 280000
-        macd_bay_3rd = 350000
+        macd_bay_1st = -200000
+        macd_bay_2nd = -280000
+        macd_bay_3rd = -350000
         #--------------------------------
         macd_sell_1st = 150000
         macd_sell_2nd = 200000
