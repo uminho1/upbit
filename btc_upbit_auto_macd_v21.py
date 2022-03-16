@@ -53,7 +53,7 @@ while True:
     price_12hr_average = int(inho_df2['close'].mean())
     price_12hr_average_gap = after_close - price_12hr_average
 
-    if price_12hr_average_gap < 750000:     #이전 12시간동안 변동성이 현재가격에서 상하 750,000보다 작은경우
+    if -750000 < price_12hr_average_gap < 750000:     #이전 12시간동안 변동성이 현재가격에서 -750,000 ~ 750,000인 경우
         macd_bay_1st = -90000
         macd_bay_2nd = -140000
         macd_bay_3rd = -180000
@@ -66,7 +66,7 @@ while True:
         macd_sell_gap_2nd = 40000
         macd_sell_gap_3rd = 50000
 
-    elif price_12hr_average_gap < -1300000:  #이전 12시간동안 변동성이 현재가격에서 상하 -1,300,000보다 큰경우
+    elif price_12hr_average_gap < -1000000:  #이전 12시간동안 변동성이 현재가격에서 -1,000,000보다 작은경우
         macd_bay_1st = -200000
         macd_bay_2nd = -280000
         macd_bay_3rd = -350000
