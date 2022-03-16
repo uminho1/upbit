@@ -144,7 +144,7 @@ while True:
     print('현재분초:', time_min)
     print('------------------------------------------')
     
-    if jango > 6000 and int(stochrsiRSI_K) > 0 and int(macd[0]) < macd_bay_1st and -8000 < int(macd_gap) > 8000:
+    if jango >= (Total_KRW-Call_KRW_1st) and int(stochrsiRSI_K) > 0 and int(macd[0]) < macd_bay_1st and -8000 < int(macd_gap) > 8000:
         upbit.buy_market_order(coin, Call_KRW_1st)
         coin_jango = upbit.get_balance(coin) #코인매수수량
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -153,6 +153,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='■ 1차매수알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
+        bot.sendMessage(chat_id=chat_id, text="price_12hr_average_gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text='코인매수한금액: {0:,.0f}'.format(coin_total_krw))        
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
         bot.sendMessage(chat_id=chat_id, text="--------------")
@@ -173,6 +174,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='■ 2차매수알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
+        bot.sendMessage(chat_id=chat_id, text="price_12hr_average_gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text='코인매수한금액: {0:,.0f}'.format(coin_total_krw))
         bot.sendMessage(chat_id=chat_id, text="--------------")
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
@@ -193,6 +195,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='■ 3차매수알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
+        bot.sendMessage(chat_id=chat_id, text="price_12hr_average_gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text='코인매수한금액: {0:,.0f}'.format(coin_total_krw))
         bot.sendMessage(chat_id=chat_id, text="--------------")
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
@@ -208,6 +211,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='■ 1차매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
+        bot.sendMessage(chat_id=chat_id, text="price_12hr_average_gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
         bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))
         bot.sendMessage(chat_id=chat_id, text="--------------")        
@@ -217,7 +221,8 @@ while True:
     elif sell_no == 2 and coin_price > coin_avg_price and coin_total_krw > 1 and int(macd[0]) > macd_sell_2nd and int(macd_gap) > macd_sell_gap_2nd:
         bot.sendMessage(chat_id=chat_id, text='■ 2차매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
-        bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))        
+        bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
+        bot.sendMessage(chat_id=chat_id, text="price_12hr_average_gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
         bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))
         bot.sendMessage(chat_id=chat_id, text="--------------")        
@@ -227,7 +232,8 @@ while True:
     elif sell_no == 3 and coin_price > coin_avg_price and coin_total_krw > 1 and int(macd[0]) > macd_sell_3rd and int(macd_gap) > macd_sell_gap_3rd:
         bot.sendMessage(chat_id=chat_id, text='■ 3차매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
-        bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))        
+        bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
+        bot.sendMessage(chat_id=chat_id, text="price_12hr_average_gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
         bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))
         bot.sendMessage(chat_id=chat_id, text="--------------")        
@@ -238,6 +244,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='■급락매도알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
         bot.sendMessage(chat_id=chat_id, text='MACD_Gap: {0:,.0f}'.format(macd_gap))
+        bot.sendMessage(chat_id=chat_id, text="price_12hr_average_gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
         bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))
         bot.sendMessage(chat_id=chat_id, text="--------------")
