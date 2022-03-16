@@ -74,22 +74,22 @@ while True:
         macd_sell_2nd = 200000
         macd_sell_3rd = 250000
         #--------------------------------
-        macd_sell_gap_1st = 50000
-        macd_sell_gap_2nd = 80000
-        macd_sell_gap_3rd = 1
+        macd_sell_gap_1st = 30000
+        macd_sell_gap_2nd = 40000
+        macd_sell_gap_3rd = 50000
         00000
     elif -3000000 < price_12hr_average_gap < 3000000:     #이전 12시간동안 변동성이 현재가격에서 -3,000,000 ~ 3,000,000인 경우
-        macd_bay_1st = -280000
-        macd_bay_2nd = -350000
-        macd_bay_3rd = -450000
+        macd_bay_1st = -300000
+        macd_bay_2nd = -400000
+        macd_bay_3rd = -500000
         #--------------------------------
-        macd_sell_1st = 230000
-        macd_sell_2nd = 280000
-        macd_sell_3rd = 400000
+        macd_sell_1st = 300000
+        macd_sell_2nd = 400000
+        macd_sell_3rd = 500000
         #--------------------------------
-        macd_sell_gap_1st = 90000
-        macd_sell_gap_2nd = 120000
-        macd_sell_gap_3rd = 150000    
+        macd_sell_gap_1st = 30000
+        macd_sell_gap_2nd = 40000
+        macd_sell_gap_3rd = 50000    
     #------------------------------------------------------------------------
     #MACD
     exp1 = df.ewm(span=12, adjust=False).mean()
