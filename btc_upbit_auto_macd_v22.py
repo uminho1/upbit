@@ -20,9 +20,9 @@ coin = "KRW-BTC"
 
 #매수에 사용할 금액
 Total_KRW = upbit.get_balance("KRW")        #전체계좌잔고
-Call_KRW_1st = Total_KRW * (10.0/100)       #1차 매수할금액
+Call_KRW_1st = Total_KRW * (20.0/100)       #1차 매수할금액
 Call_KRW_2nd = Total_KRW * (35.0/100)       #2차 매수할금액    
-Call_KRW_3rd = Total_KRW * (55.0/100)       #3차 매수할금액
+Call_KRW_3rd = Total_KRW * (45.0/100)       #3차 매수할금액
 jango_update = "off"
 sell_no = "off"
 #========================================================================
@@ -40,9 +40,9 @@ while True:
     #매수에 사용할 금액
     if jango_update == "on":
         Total_KRW = upbit.get_balance("KRW")        #전체계좌잔고
-        Call_KRW_1st = Total_KRW * (10.0/100)       #1차 매수할금액
+        Call_KRW_1st = Total_KRW * (20.0/100)       #1차 매수할금액
         Call_KRW_2nd = Total_KRW * (35.0/100)       #2차 매수할금액    
-        Call_KRW_3rd = Total_KRW * (55.0/100)       #3차 매수할금액
+        Call_KRW_3rd = Total_KRW * (45.0/100)       #3차 매수할금액
         jango_update == "off"
     #------------------------------------------------------------------------
     #급락대비 직전봉 거래량 구하기
@@ -283,6 +283,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격: {0:,.0f}".format(price_12hr_average))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))
+        bot.sendMessage(chat_id=chat_id, text='sell_no: {0:,.0f}'.format(sell_no))
     elif time_min > "3000" and time_min < "3015":
         bot.sendMessage(chat_id=chat_id, text='■ 매시간 30분 알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
@@ -291,6 +292,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="MACD_sell_1st: {0:,.0f}".format(macd_sell_1st))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격: {0:,.0f}".format(price_12hr_average))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
-        bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))    
+        bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))
+        bot.sendMessage(chat_id=chat_id, text='sell_no: {0:,.0f}'.format(sell_no))
 
     time.sleep(5)
