@@ -164,8 +164,8 @@ while True:
     print('보유자산(잔고):', '{0:,.0f}'.format(jango))    
     print('------------------------------------------')
     
-    if jango >= (Total_KRW - Call_KRW_1st) and int(stochrsiRSI_K) > 0 and int(macd[0]) < macd_bay_1st and -30000 < int(macd_gap) > 35000:
-        upbit.buy_market_order(coin, Call_KRW_1st)
+    if jango >= (Total_KRW - Call_KRW_1st) and int(macd[0]) < macd_bay_1st and -30000 < int(macd_gap) > 35000:
+        #upbit.buy_market_order(coin, Call_KRW_1st)
         coin_jango = upbit.get_balance(coin) #코인매수수량
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
         coin_total_krw = coin_avg_price * coin_jango #매수한금액
@@ -180,8 +180,8 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))        
         bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
 
-    if jango >= (Total_KRW - Call_KRW_2nd) and int(stochrsiRSI_K) > 0 and int(macd[0]) < macd_bay_2nd and -30000 < int(macd_gap) > 35000:
-        upbit.buy_market_order(coin, Call_KRW_2nd)
+    if jango >= (Total_KRW - Call_KRW_2nd) and int(macd[0]) < macd_bay_2nd and -30000 < int(macd_gap) > 35000:
+        #upbit.buy_market_order(coin, Call_KRW_2nd)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
         coin_total_krw = coin_avg_price * coin_jango #매수한금액
@@ -196,8 +196,8 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))        
         bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
 
-    if jango >= (Total_KRW - Call_KRW_3rd) and int(stochrsiRSI_K) > 0 and int(macd[0]) < macd_bay_3rd and -30000 < int(macd_gap) > 35000:
-        upbit.buy_market_order(coin, Call_KRW_3rd)
+    if jango >= (Total_KRW - Call_KRW_3rd) and int(macd[0]) < macd_bay_3rd and -30000 < int(macd_gap) > 35000:
+        #upbit.buy_market_order(coin, Call_KRW_3rd)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
         coin_total_krw = coin_avg_price * coin_jango #매수한금액
