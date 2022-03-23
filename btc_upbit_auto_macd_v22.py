@@ -282,8 +282,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="MACD_sell_1st: {0:,.0f}".format(macd_sell_1st))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격: {0:,.0f}".format(price_12hr_average))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
-        bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))
-        bot.sendMessage(chat_id=chat_id, text='sell_no: {0:,.0f}'.format(sell_no))
+        bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))        
     elif time_min > "3000" and time_min < "3015":
         bot.sendMessage(chat_id=chat_id, text='■ 매시간 30분 알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
@@ -292,7 +291,6 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="MACD_sell_1st: {0:,.0f}".format(macd_sell_1st))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격: {0:,.0f}".format(price_12hr_average))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
-        bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))
-        bot.sendMessage(chat_id=chat_id, text='sell_no: {0:,.0f}'.format(sell_no))
+        bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))        
 
     time.sleep(5)
