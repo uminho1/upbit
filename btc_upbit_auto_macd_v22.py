@@ -51,10 +51,10 @@ while True:
     before_volume = inho_df['volume'].iloc[-2]     #직전봉거래량
     before_volume_new = before_volume * 2.5
 
-    after_close = inho_df['close'].iloc[-1]      #현재봉가격    
-    before_close = inho_df['close'].iloc[-2]     #직전봉종가
+    after_close = inho_df['close'].iloc[-1]        #현재봉가격    
+    before_close = inho_df['close'].iloc[-2]       #직전봉종가
     before_close_new = before_close - (before_close * 0.010)  #급락신호
-    before_close_new_temp = before_close * 0.010   #급락신호
+    before_close_new_temp = before_close * 0.010              #급락신호
     #------------------------------------------------------------------------
     inho_df2 = pyupbit.get_ohlcv(ticker=coin, interval='minute5', count=144)
     price_12hr_average = int(inho_df2['close'].mean())
