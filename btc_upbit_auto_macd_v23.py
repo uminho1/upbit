@@ -73,13 +73,13 @@ while True:
         macd_sell_gap_2nd = 49000
         macd_sell_gap_3rd = 59000
     elif -1500000 < price_12hr_average_gap < 1500000:     #이전 12시간동안 변동성이 현재가격에서 -1,500,000 ~ 1,500,000인 경우
-        macd_bay_1st = -200000
-        macd_bay_2nd = -280000
-        macd_bay_3rd = -350000
+        macd_bay_1st = -150000
+        macd_bay_2nd = -250000
+        macd_bay_3rd = -300000
         #--------------------------------
-        macd_sell_1st = 150000
-        macd_sell_2nd = 200000
-        macd_sell_3rd = 250000
+        macd_sell_1st = 120000
+        macd_sell_2nd = 170000
+        macd_sell_3rd = 220000
         #--------------------------------
         macd_sell_gap_1st = 30000
         macd_sell_gap_2nd = 40000
