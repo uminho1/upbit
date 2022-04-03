@@ -15,7 +15,6 @@ upbit =  pyupbit.Upbit(access, secret)
 
 bot = telegram.Bot(token='5007441586:AAF-TCPvcJbGYVn224m-dvlqgsePkvW_gW8')
 chat_id ="849745003"
-
 coin = "KRW-BTC"
 
 #매수에 사용할 금액
@@ -24,6 +23,7 @@ Call_KRW_1st = Total_KRW * (15.0/100)       #1차 매수할금액
 Call_KRW_2nd = Total_KRW * (35.0/100)       #2차 매수할금액    
 Call_KRW_3rd = Total_KRW * (50.0/100)       #3차 매수할금액
 jango_update = "off"
+buy_no = "off"
 sell_no = "off"
 #========================================================================
 #실시간 매매
@@ -182,8 +182,9 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='코인매수한금액: {0:,.0f}'.format(coin_total_krw))        
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))        
         bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
+        buy_no = 2
 
-    if jango >= (Total_KRW - (Call_KRW_1st + Call_KRW_2nd)) and int(macd[0]) < macd_buy_2nd and macd_buy_gap > int(macd_gap):
+    if buy_no == 2 and int(macd[0]) < macd_buy_2nd and macd_buy_gap > int(macd_gap):
         upbit.buy_market_order(coin, Call_KRW_2nd)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
@@ -198,8 +199,9 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='코인매수한금액: {0:,.0f}'.format(coin_total_krw))        
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))        
         bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
+        buy_no = 3
 
-    if jango >= (Total_KRW - (Call_KRW_1st + Call_KRW_2nd + Call_KRW_3rd)) and int(macd[0]) < macd_buy_3rd and macd_buy_gap > int(macd_gap):
+    if buy_no == 3 and int(macd[0]) < macd_buy_3rd and macd_buy_gap > int(macd_gap):
         upbit.buy_market_order(coin, Call_KRW_3rd)
         coin_jango = upbit.get_balance(coin) #코인매수수량    
         coin_avg_price = round(upbit.get_avg_buy_price(coin), 0) #매수평단가
