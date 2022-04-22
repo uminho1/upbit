@@ -38,9 +38,9 @@ while True:
     #------------------------------------------------------------------------
     #매수에 사용할 금액    
     Total_KRW = upbit.get_balance("KRW")        #전체계좌잔고
-    Call_KRW_1st = Total_KRW * (10.0/100)       #1차 매수할금액
-    Call_KRW_2nd = Total_KRW * (30.0/100)       #2차 매수할금액
-    Call_KRW_3rd = Total_KRW * (60.0/100)       #3차 매수할금액
+    Call_KRW_1st = Total_KRW * (7.0/100)       #1차 매수할금액
+    Call_KRW_2nd = Total_KRW * (25.0/100)       #2차 매수할금액
+    Call_KRW_3rd = Total_KRW * (68.0/100)       #3차 매수할금액
     #------------------------------------------------------------------------
     #급락대비 직전봉 거래량 구하기
     inho_df = pyupbit.get_ohlcv(ticker=coin, interval='minute5', count=10)
@@ -57,14 +57,14 @@ while True:
     price_12hr_average = int(inho_df2['close'].mean())
     price_12hr_average_gap = after_close - price_12hr_average
 
-    if -850000 < price_12hr_average_gap < 850000:         #이전 12시간동안 변동성이 현재가격에서 -850,000 ~ 850,000인 경우
+    if -650000 < price_12hr_average_gap < 650000:         #이전 12시간동안 변동성이 현재가격에서 -650,000 ~ 650,000인 경우
         macd_buy_1st = -95000
-        macd_buy_2nd = -190000
+        macd_buy_2nd = -180000
         macd_buy_3rd = -270000
         macd_buy_gap = -20000
         #--------------------------------
         macd_sell_1st = 95000
-        macd_sell_2nd = 190000
+        macd_sell_2nd = 180000
         macd_sell_3rd = 270000
         #--------------------------------
         macd_sell_gap_1st = 29000
