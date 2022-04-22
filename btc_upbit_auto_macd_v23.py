@@ -38,9 +38,9 @@ while True:
     #------------------------------------------------------------------------
     #매수에 사용할 금액    
     Total_KRW = upbit.get_balance("KRW")        #전체계좌잔고
-    Call_KRW_1st = Total_KRW * (15.0/100)       #1차 매수할금액
-    Call_KRW_2nd = Total_KRW * (35.0/100)       #2차 매수할금액
-    Call_KRW_3rd = Total_KRW * (50.0/100)       #3차 매수할금액
+    Call_KRW_1st = Total_KRW * (10.0/100)       #1차 매수할금액
+    Call_KRW_2nd = Total_KRW * (30.0/100)       #2차 매수할금액
+    Call_KRW_3rd = Total_KRW * (60.0/100)       #3차 매수할금액
     #------------------------------------------------------------------------
     #급락대비 직전봉 거래량 구하기
     inho_df = pyupbit.get_ohlcv(ticker=coin, interval='minute5', count=10)
