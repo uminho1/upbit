@@ -145,7 +145,7 @@ while True:
     Sell_3rd = coin_jango * (100.0/100)     #2차매도후 잔고에 100%매도
     Sell_KRW_1st = (coin_avg_price * Sell_3rd) - (coin_avg_price * Sell_1st)  #1차 매도시 잔고 비교용
 
-    if jango == 6000:
+    if jango <= 6000:
         buy_no = 1
         sell_no = 1
         
@@ -188,8 +188,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text='코인매수한금액: {0:,.0f}'.format(coin_total_krw))        
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))        
-        bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
-        
+        bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))        
         buy_no = 2
         sell_no = 1
 
