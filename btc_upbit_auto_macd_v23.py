@@ -23,7 +23,7 @@ Call_KRW_1st = Total_KRW * (15.0/100)       #1차 매수할금액
 Call_KRW_2nd = Total_KRW * (35.0/100)       #2차 매수할금액    
 Call_KRW_3rd = Total_KRW * (50.0/100)       #3차 매수할금액
 buy_no = 1
-sell_no = "off"
+sell_no = 1
 #========================================================================
 #실시간 매매
 while True:
@@ -143,7 +143,12 @@ while True:
     Sell_1st = coin_jango * (20.0/100)      #잔고에 20%매도
     Sell_2nd = coin_jango * (50.0/100)      #1차매도후 잔고에 50%매도
     Sell_3rd = coin_jango * (100.0/100)     #2차매도후 잔고에 100%매도
-    Sell_KRW_1st = (coin_avg_price * Sell_3rd) - (coin_avg_price * Sell_1st)  #1차 매도시 잔고 비교용 
+    Sell_KRW_1st = (coin_avg_price * Sell_3rd) - (coin_avg_price * Sell_1st)  #1차 매도시 잔고 비교용
+
+    if jango == 6000:
+        buy_no = 1
+        sell_no = 1
+        
     #------------------------------------------------------------------------
     print('실시간MACD: ', '{0:,.0f}'.format(macd[0]))
     print('실시간Signal: ', '{0:,.0f}'.format(signal[0]))
@@ -162,8 +167,11 @@ while True:
     print('12시간평균가(Gap): ', '{0:,.0f}'.format(price_12hr_average_gap))    
     print('------------------------------------------')
     print('코인현재가: {0:,.0f}'.format(coin_price))
-    print('보유자산(잔고):', '{0:,.0f}'.format(jango))    
+    print('보유자산(잔고):', '{0:,.0f}'.format(jango))
     print('------------------------------------------')
+    print('매수NO:', '{0:,.0f}'.format(buy_no))
+    print('매도NO:', '{0:,.0f}'.format(sell_no))
+    
     
     #1차매수
     if buy_no == 1 and int(macd[0]) < macd_buy_1st and macd_buy_gap > int(macd_gap):
@@ -181,6 +189,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text='코인매수한금액: {0:,.0f}'.format(coin_total_krw))        
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))        
         bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
+        
         buy_no = 2
         sell_no = 1
 
@@ -218,7 +227,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text='코인매수한금액: {0:,.0f}'.format(coin_total_krw))        
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))        
-        bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
+        bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))        
         sell_no = 1
         
     #1차매도
@@ -229,8 +238,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격: {0:,.0f}".format(price_12hr_average))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
-        bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))
-        bot.sendMessage(chat_id=chat_id, text="--------------")        
+        bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))        
         upbit.sell_market_order(coin, Sell_1st)
         sell_no = 2
 
@@ -242,8 +250,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격: {0:,.0f}".format(price_12hr_average))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
-        bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))
-        bot.sendMessage(chat_id=chat_id, text="--------------")        
+        bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))        
         upbit.sell_market_order(coin, Sell_2nd)
         sell_no = 3
 
@@ -255,8 +262,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격: {0:,.0f}".format(price_12hr_average))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text='코인평단가: {0:,.0f}'.format(coin_avg_price))
-        bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))
-        bot.sendMessage(chat_id=chat_id, text="--------------")        
+        bot.sendMessage(chat_id=chat_id, text='코인매도가: {0:,.0f}'.format(coin_price))        
         upbit.sell_market_order(coin, Sell_3rd)
         buy_no = 1
 
@@ -277,7 +283,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="현재봉가격: {0:,.0f}".format(after_close))
         bot.sendMessage(chat_id=chat_id, text="전량 매도후 5시간 매매대기합니다.")
         upbit.sell_market_order(coin, coin_jango)
-        sell_no = "end"
+        sell_no = 1
         time.sleep(18000) #5시간 wait 매매대기
 
     else:
@@ -293,7 +299,9 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="MACD_sell_1st: {0:,.0f}".format(macd_sell_1st))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격: {0:,.0f}".format(price_12hr_average))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
-        bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))        
+        bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))
+        bot.sendMessage(chat_id=chat_id, text="매수NO: {0:,.0f}".format(buy_no))
+        bot.sendMessage(chat_id=chat_id, text="매도NO: {0:,.0f}".format(sell_no))
     elif time_min > "3000" and time_min < "3015":
         bot.sendMessage(chat_id=chat_id, text='■ 매시간 30분 알림:')
         bot.sendMessage(chat_id=chat_id, text='MACD: {0:,.0f}'.format(macd[0]))
@@ -303,5 +311,7 @@ while True:
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격: {0:,.0f}".format(price_12hr_average))
         bot.sendMessage(chat_id=chat_id, text="12시간 평균가격_Gap : {0:,.0f}".format(price_12hr_average_gap))
         bot.sendMessage(chat_id=chat_id, text="현재가격: {0:,.0f}".format(coin_price))
+        bot.sendMessage(chat_id=chat_id, text="매수NO: {0:,.0f}".format(buy_no))
+        bot.sendMessage(chat_id=chat_id, text="매도NO: {0:,.0f}".format(sell_no))
 
     time.sleep(5)
