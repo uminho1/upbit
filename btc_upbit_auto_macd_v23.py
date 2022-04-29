@@ -59,40 +59,40 @@ while True:
 
     if -650000 < price_12hr_average_gap < 650000:         #이전 12시간동안 변동성이 현재가격에서 -650,000 ~ 650,000인 경우
         macd_buy_1st = -95000
-        macd_buy_2nd = -180000
-        macd_buy_3rd = -270000
+        macd_buy_2nd = -150000
+        macd_buy_3rd = -230000
         macd_buy_gap = -20000
         #--------------------------------
-        macd_sell_1st = 95000
-        macd_sell_2nd = 180000
-        macd_sell_3rd = 270000
+        macd_sell_1st = 85000
+        macd_sell_2nd = 140000
+        macd_sell_3rd = 200000
         #--------------------------------
         macd_sell_gap_1st = 29000
         macd_sell_gap_2nd = 49000
         macd_sell_gap_3rd = 59000
     elif -1500000 < price_12hr_average_gap < 1500000:     #이전 12시간동안 변동성이 현재가격에서 -1,500,000 ~ 1,500,000인 경우
-        macd_buy_1st = -150000
-        macd_buy_2nd = -280000
-        macd_buy_3rd = -350000
+        macd_buy_1st = -130000
+        macd_buy_2nd = -250000
+        macd_buy_3rd = -330000
         macd_buy_gap = -20000
         #--------------------------------
-        macd_sell_1st = 150000
-        macd_sell_2nd = 280000
-        macd_sell_3rd = 350000
+        macd_sell_1st = 120000
+        macd_sell_2nd = 230000
+        macd_sell_3rd = 300000
         #--------------------------------
         macd_sell_gap_1st = 30000
         macd_sell_gap_2nd = 40000
         macd_sell_gap_3rd = 50000
         00000
     elif -3000000 < price_12hr_average_gap < 3000000:     #이전 12시간동안 변동성이 현재가격에서 -3,000,000 ~ 3,000,000인 경우
-        macd_buy_1st = -300000
-        macd_buy_2nd = -400000
-        macd_buy_3rd = -500000
+        macd_buy_1st = -180000
+        macd_buy_2nd = -260000
+        macd_buy_3rd = -350000
         macd_buy_gap = -20000
         #--------------------------------
-        macd_sell_1st = 300000
-        macd_sell_2nd = 400000
-        macd_sell_3rd = 500000
+        macd_sell_1st = 160000
+        macd_sell_2nd = 240000
+        macd_sell_3rd = 320000
         #--------------------------------
         macd_sell_gap_1st = 30000
         macd_sell_gap_2nd = 40000
@@ -145,7 +145,7 @@ while True:
     Sell_3rd = coin_jango * (100.0/100)     #2차매도후 잔고에 100%매도
     Sell_KRW_1st = (coin_avg_price * Sell_3rd) - (coin_avg_price * Sell_1st)  #1차 매도시 잔고 비교용
 
-    if jango >= 750000:
+    if jango >= 700000:
         buy_no = 1
         sell_no = 1
     #------------------------------------------------------------------------
